@@ -1,5 +1,5 @@
 {
-  "name": "online_store",
+  "name": "onlinestore",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,11 +7,20 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "http-server": "http-server ./ -c-1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxelkin5gm/OnlineStore.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maxelkin5gm/OnlineStore/issues"
+  },
+  "homepage": "https://github.com/maxelkin5gm/OnlineStore#readme",
   "dependencies": {
-    "handlebars": "^4.7.7"
+    "ejs": "^3.1.6",
+    "mongoose": "^6.0.6"
   },
   "devDependencies": {
     "http-server": "^13.0.2"

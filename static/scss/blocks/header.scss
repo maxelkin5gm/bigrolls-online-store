@@ -1,0 +1,59 @@
+.header {
+  background: url("http://localhost:8080/static/img/header/header_backround.jpg") top no-repeat, rgba(0, 0, 0, 0.6);
+  background-blend-mode: multiply;
+  background-size: cover;
+  padding: 50px 0;
+
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+  }
+
+  &__logo {
+    max-width: 300px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &__menu {
+
+  }
+}
+
+.menu {
+
+  &__item {
+    color: white;
+    font-size: 20px;
+    letter-spacing: 1px;
+    padding: 10px;
+
+    transition: color 0.3s;
+
+    &:hover {
+      color: #ed8540;
+      border-bottom: solid 1px #ed8540;
+    }
+  }
+}
+
+.basket {
+  display: inline-block;
+  &__link {
+    padding-right: 0;
+  }
+
+  &__indicator {
+    display: inline-block;
+    transform: translateY(-6px);
+    padding: 0 5px;
+    background: #ed8540;
+    border-radius: 10%;
+    font-size: 16px;
+    font-weight: 700;
+  }
+}

@@ -1,11 +1,9 @@
-const Handlebars = require('handlebars')
-const fs = require('fs')
-
+const ejs = require("ejs")
 
 module.exports = class TemplateEngine {
     render(path, options) {
-        const source = fs.readFileSync(path, "utf8");
-        const template = Handlebars.compile(source)
-        return template(options)
+        return ejs.renderFile(path,  options)
     }
 }
+
+

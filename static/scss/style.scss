@@ -1,0 +1,26 @@
+// reset
+@import "reset";
+
+// fonts
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700&display=swap');
+
+// config
+body {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+  background: white;
+  color: white;
+}
+
+.container {
+  max-width: 1130px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+
+// blocks
+@import "blocks/header";
+@import "blocks/about-line";
+@import "blocks/main";
+@import "blocks/map";

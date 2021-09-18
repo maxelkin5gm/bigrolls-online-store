@@ -10,32 +10,116 @@
 </head>
 <body>
 
-<header>
-    <div class="logo">
-        <img src="https://via.placeholder.com/300x300" alt="">
-    </div>
+<header class="header">
+    <div class="container">
 
-    <nav>
-        <a href="">Меню</a>
-        <a href="">Роллы</a>
-        <a href="">Сеты</a>
-        <a href="">Заказы</a>
-        <a href="">О нас</a>
-        <a href="">Корзина</a>
-    </nav>
+        <div class="header__container">
+            <div class="header__logo">
+                <img src="http://localhost:8080/static/img/header/logo.png" alt="">
+            </div>
+
+            <nav class="header__menu menu">
+                <a class="menu__item" href="">Меню</a>
+                <a class="menu__item" href="">Роллы</a>
+                <a class="menu__item" href="">Сеты</a>
+                <a class="menu__item" href="">Заказы</a>
+                <a class="menu__item" href="">О нас</a>
+                <div class="basket">
+                    <a class="basket__link menu__item" href="">Корзина</a>
+                    <span class="basket__indicator">0</span>
+                </div>
+
+            </nav>
+        </div>
+
+    </div>
 </header>
 
-
-<section class="about">
-    <h2>Лучшая доставка суши и роллов в Кирове</h2>
-    <p>Принимаем заказы на сайте или по телефону</p>
+<section class="about-line">
+    <h2>Лучшая доставка суши и роллов в Кирове⏰с 10:00 - 22:30</h2>
+    <p>Принимаем заказы на сайте или по телефону ☎ 203-603</p>
 </section>
 
 
-<section class="products">
+<section class="main">
+    <div class="container">
+        <div class="main__container">
+            <div class="sidebar">
+                <div class="sidebar__categories">
+                    <h2>Категории</h2>
+                    <a href="">Роллы</a>
+                    <a href="">Сеты</a>
+                    <a href="">Запеченные</a>
+                    <a href="">Фритюр</a>
+                </div>
+
+                <div class="sidebar__video">
+                    <iframe src="https://www.youtube.com/embed/SXVInXHZaWE?autoplay=1&mute=1"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+
+
+            </div>
+
+            <div class="products">
+
+                <div class="products__item">
+                    <a class="products__link" href="">
+                        <img src="http://localhost:8080/static/img/categories/20IUzGXEjQc.jpg" alt="">
+                        <span>Запеченные</span>
+                    </a>
+                </div>
+
+                <div class="products__item">
+                    <a class="products__link" href="">
+                        <img src="http://localhost:8080/static/img/categories/20IUzGXEjQc.jpg" alt="">
+                        <span>Запеченные</span>
+                    </a>
+                </div>
+
+                <div class="products__item">
+                    <a class="products__link" href="">
+                        <img src="http://localhost:8080/static/img/categories/20IUzGXEjQc.jpg" alt="">
+                        <span>Запеченные</span>
+                    </a>
+                </div>
+
+                <div class="products__item">
+                    <a class="products__link" href="">
+                        <img src="http://localhost:8080/static/img/categories/20IUzGXEjQc.jpg" alt="">
+                        <span>Запеченные</span>
+                    </a>
+                </div>
+
+                <div class="products__item">
+                    <a class="products__link" href="">
+                        <img src="http://localhost:8080/static/img/categories/20IUzGXEjQc.jpg" alt="">
+                        <span>Запеченные</span>
+                    </a>
+                </div>
+
+                <div class="products__item">
+                    <a class="products__link" href="">
+                        <img src="http://localhost:8080/static/img/categories/20IUzGXEjQc.jpg" alt="">
+                        <span>Запеченные</span>
+                    </a>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
 
 </section>
 
+
+<section class="map">
+    <div class="container">
+        map
+    </div>
+</section>
 
 </body>
 </html>

@@ -1,3 +1,145 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700&display=swap");
+*, *:before, *:after {
+  box-sizing: border-box;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+}
 
+body {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+  background: white;
+  color: white;
+}
+
+.container {
+  max-width: 1130px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header {
+  background: url("http://localhost:8080/static/img/header/header_backround.jpg") top no-repeat, rgba(0, 0, 0, 0.6);
+  background-blend-mode: multiply;
+  background-size: cover;
+  padding: 50px 0;
+}
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+.header__logo {
+  max-width: 300px;
+}
+.header__logo img {
+  width: 100%;
+}
+.menu__item {
+  color: white;
+  font-size: 20px;
+  letter-spacing: 1px;
+  padding: 10px;
+  transition: color 0.3s;
+}
+.menu__item:hover {
+  color: #ed8540;
+  border-bottom: solid 1px #ed8540;
+}
+
+.basket {
+  display: inline-block;
+}
+.basket__link {
+  padding-right: 0;
+}
+.basket__indicator {
+  display: inline-block;
+  transform: translateY(-6px);
+  padding: 0 5px;
+  background: #ed8540;
+  border-radius: 10%;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.about-line {
+  background: #ed8540;
+  text-align: center;
+  padding: 20px 0;
+}
+.about-line h2 {
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+.main {
+  margin-top: 20px;
+}
+.main__container {
+  display: flex;
+}
+
+.sidebar {
+  border-right: 1px solid #cbcbcb;
+  margin: 15px 0 0 0;
+  padding-right: 10px;
+  width: 25%;
+}
+.sidebar__categories {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sidebar__categories h2, .sidebar__categories a {
+  color: black;
+  padding: 5px;
+  transition: all 0.5s;
+}
+.sidebar__categories h2:hover, .sidebar__categories a:hover {
+  color: #ed8540;
+}
+.sidebar__video {
+  text-align: center;
+  width: 100%;
+}
+.sidebar__video iframe {
+  max-width: 250px;
+  height: auto;
+  width: 100%;
+}
+
+.products {
+  width: 75%;
+  padding: 10px 0 10px 10px;
+  border-top: 1px solid #cbcbcb;
+  display: flex;
+  flex-wrap: wrap;
+}
+.products__item {
+  flex-basis: 33.33333%;
+  padding: 10px;
+}
+.products__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+}
+.products span {
+  font-weight: 700;
+}
+.products img {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.map {
+  background: antiquewhite;
+  height: 200px;
+  color: black;
+}
 
 /*# sourceMappingURL=style.css.map */
