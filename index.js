@@ -9,7 +9,7 @@ const templateEngine = new TemplateEngine()
 
 
 app.get('/', (req, res) => {
-    res.end(templateEngine.render('./Templates/index.html', { title: 'Online Store' }))
+    res.end(templateEngine.render('./Templates/index.html'))
 })
 
 
