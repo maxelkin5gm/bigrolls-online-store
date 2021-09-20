@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ru">
+
+<%- include('partials/head.html'); %>
+
+<body>
+
+<%- include('partials/header.html'); %>
+
+<%- include('partials/about-line.html'); %>
+
+<section class="main">
+    <div class="container">
+        <div class="main__container">
+            <div class="sidebar">
+                <div class="sidebar__categories">
+                    <h2>Категории</h2>
+                    <% categories.forEach(function(category) { %>
+                    <a href="/<%= category.name %>"><%= category.name %></a>
+                    <% })%>
+                </div>
+
+                <div class="sidebar__video">
+                    <iframe src="https://www.youtube.com/embed/SXVInXHZaWE?autoplay=1&mute=1"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+
+
+            </div>
+
+            <div class="categories">
+
+                <% categories.forEach(function(category) { %>
+                <div class="categories__item">
+                    <a class="categories__link" href="/<%= category.name %>">
+                        <img src="<%= category.imgURL %>" alt="">
+                        <span><%= category.name %></span>
+                    </a>
+                </div>
+                <% })%>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<section class="map">
+    <div class="container">
+        map
+    </div>
+</section>
+
+</body>
+</html>

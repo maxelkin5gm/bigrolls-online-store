@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ru">
+
+<%- include('partials/head.html'); %>
+
+<body>
+
+<%- include('partials/header.html'); %>
+
+<section class="about-line">
+    <h2>Корзина</h2>
+</section>
+
+<section class="main">
+    <div class="container">
+        <div class="main__container">
+            <div class="sidebar">
+                <div class="sidebar__categories">
+                    <h2>Категории</h2>
+                    <% categories.forEach(function(category) { %>
+                    <a href="/<%= category.name %>"><%= category.name %></a>
+                    <% })%>
+                </div>
+
+                <div class="sidebar__video">
+                    <iframe src="https://www.youtube.com/embed/SXVInXHZaWE?autoplay=1&mute=1"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+
+
+            </div>
+
+            <div class="basket-page">
+                <table>
+                    <tbody>
+
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th>Товар</th>
+                        <th>Цена</th>
+                    </tr>
+
+                    <tr>
+                        <td class="basket-page__delete">X</td>
+                        <td class="basket-page__img"><img
+                                src="http://localhost:8080/static/img/categories/LZcB08PuqzI.jpg" alt=""></td>
+                        <td class="basket-page__name">Филадельфия</td>
+                        <td class="basket-page__price">220 ₽</td>
+                    </tr>
+
+                    <tr>
+                        <td class="basket-page__delete">X</td>
+                        <td class="basket-page__img"><img
+                                src="http://localhost:8080/static/img/categories/LZcB08PuqzI.jpg" alt=""></td>
+                        <td class="basket-page__name">Калифорния</td>
+                        <td class="basket-page__price">240 ₽</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                <br>
+                <hr>
+                <br>
+                <div class="basket-page__confirm">
+                    <p>Сумма заказа: 460 ₽</p>
+                    <a href="/checkout">Подтвердить</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+</body>
+</html>

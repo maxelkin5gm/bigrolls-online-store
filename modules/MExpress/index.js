@@ -30,7 +30,7 @@ module.exports = class MExpress {
                 const url = this._routers[i].url
                 const method = this._routers[i].method
 
-                if ((req.url === url) && (req.method === method)) {
+                if ((decodeURIComponent(req.url) === url) && (req.method === method)) {
                     this._routers[i].callBack(req, res)
                     isFound = true
                     break

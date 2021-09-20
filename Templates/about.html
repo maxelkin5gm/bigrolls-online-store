@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ru">
+
+<%- include('partials/head.html'); %>
+
+<body>
+
+<%- include('partials/header.html'); %>
+
+<section class="about-line">
+    <h2>О нас</h2>
+</section>
+
+<section class="main">
+    <div class="container">
+        <div class="main__container">
+            <div class="sidebar">
+                <div class="sidebar__categories">
+                    <h2>Категории</h2>
+                    <% categories.forEach(function(category) { %>
+                    <a href="/<%= category.name %>"><%= category.name %></a>
+                    <% })%>
+                </div>
+
+                <div class="sidebar__video">
+                    <iframe src="https://www.youtube.com/embed/SXVInXHZaWE?autoplay=1&mute=1"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+
+
+            </div>
+
+            <div class="about-page">
+                <p>Наши роллы отличаются своими внушительными размерами, а так же количеством ингредиентов, которые
+                    входят в состав наших блюд.
+                    <br>
+                    <br>
+                    За 5 лет работы мы научились делать самые большие и вкусные Роллы в Кирове, и по сей день мы не
+                    экономим на продуктах и поддерживаем достойное качество!
+                    <br>
+                    <br>
+                    За последние годы появилось множество Суши-Баров, у которых главным показателем является низкая
+                    цена, что влияет на качество блюд и количество основных компонентов!
+                    <br>
+                    <br>
+                    Для нас основными показателем успеха неизменно являются:
+                    <br>
+                    <br>
+                    — Лучшее качество
+                    — Быстрая доставка
+                    — Большие роллы, которыми можно насытиться!
+                    <br>
+                    <br>
+                    Мы решили это проблему без потери качества, снизив расходы на аренду дополнительных помещений, и
+                    теперь мы находимся на Ленина 77, откуда доставляем в любую точку города Кирова.
+                    <br>
+                    <br>
+                    Делайте заказ с 12:30 до 16:00 и доставка будет быстрее!
+                    Заказы принимаются круглосуточно каждый день без выходных.
+                    <br>
+                    <br>
+                    Вы можете СДЕЛАТЬ ЗАКАЗ наиболее удобным для Вас способом:
+                    — по телефону: 203-603
+                    — в бистро на ул. Ленина,77
+                    — на нашем сайте
+                    <br>
+                    <br>
+                    Бесплатная доставка по городу при заказе от 500 руб. (условия доставки в дальние районы уточняйте у
+                    оператора).
+                    Доставка по городу осуществляется в течение 1 часа. В часы пик время доставки может быть увеличено.
+                </p>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<section class="map">
+    <div class="container">
+        map
+    </div>
+</section>
+
+</body>
+</html>

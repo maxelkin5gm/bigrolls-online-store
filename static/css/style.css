@@ -48,13 +48,13 @@ body {
   border-bottom: solid 1px #ed8540;
 }
 
-.basket {
+.basket-menu {
   display: inline-block;
 }
-.basket__link {
+.basket-menu__link {
   padding-right: 0;
 }
-.basket__indicator {
+.basket-menu__indicator {
   display: inline-block;
   transform: translateY(-6px);
   padding: 0 5px;
@@ -111,6 +111,31 @@ body {
   width: 100%;
 }
 
+.categories {
+  width: 75%;
+  padding: 10px 0 10px 10px;
+  border-top: 1px solid #cbcbcb;
+  display: flex;
+  flex-wrap: wrap;
+}
+.categories__item {
+  flex-basis: 33.33333%;
+  padding: 10px;
+}
+.categories__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+}
+.categories span {
+  font-weight: 700;
+}
+.categories img {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
 .products {
   width: 75%;
   padding: 10px 0 10px 10px;
@@ -123,23 +148,192 @@ body {
   padding: 10px;
 }
 .products__link {
+  transition: 0.3s;
   display: flex;
   flex-direction: column;
   align-items: center;
   color: black;
 }
-.products span {
-  font-weight: 700;
+.products__link:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 .products img {
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+}
+.products__name {
+  font-weight: 700;
+  padding-bottom: 5px;
+}
+.products__price {
+  font-size: 20px;
+  color: green;
+  font-weight: 300;
+  text-align: center;
+  padding-bottom: 5px;
+}
+.products__basket {
+  cursor: pointer;
+  display: block;
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+  color: #848494;
+  padding: 5px 12px;
+  border: 3px double #e4e4e4;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+}
+.products__basket:hover {
+  color: black;
+  border-color: black;
 }
 
 .map {
   background: antiquewhite;
   height: 200px;
   color: black;
+}
+
+.about-page {
+  color: black;
+  padding: 20px;
+  width: 75%;
+  order: -1;
+  border-right: 1px solid #cbcbcb;
+  margin-right: 10px;
+}
+.about-page p {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+}
+
+.basket-page {
+  width: 75%;
+  order: -1;
+  border-right: 1px solid #cbcbcb;
+  margin-right: 10px;
+  color: black;
+}
+.basket-page__delete {
+  text-align: center;
+  font-size: 30px;
+  cursor: pointer;
+}
+.basket-page__name {
+  width: 60%;
+}
+.basket-page__img img {
+  width: auto;
+  max-width: 100px;
+}
+.basket-page__price {
+  color: green;
+}
+.basket-page table {
+  width: 98%;
+  text-align: left;
+  border-spacing: 0;
+  border-collapse: collapse;
+  border: 1px solid #e9e9e9;
+}
+.basket-page table th, .basket-page table td {
+  padding: 10px;
+  border-top: 1px solid #e9e9e9;
+  border-bottom: 1px solid #e9e9e9;
+}
+.basket-page table th {
+  background: #eaeaea;
+}
+.basket-page table td {
+  height: 80px;
+}
+.basket-page hr {
+  width: 98%;
+}
+.basket-page__confirm {
+  display: flex;
+  justify-content: space-around;
+}
+.basket-page__confirm p {
+  font-size: 30px;
+}
+.basket-page__confirm a {
+  cursor: pointer;
+  transition: 0.5s;
+  color: green;
+  padding: 5px 12px;
+  border: 3px double green;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+}
+.basket-page__confirm a:hover {
+  color: greenyellow;
+  border-color: greenyellow;
+}
+
+.checkout-page {
+  color: black;
+  padding: 30px;
+  width: 75%;
+}
+.checkout-page__container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.checkout-page form {
+  font-size: 20px;
+}
+.checkout-page form input {
+  font-size: 16px;
+  padding: 6px 0 4px 10px;
+  border: 1px solid #cecece;
+  background: #F6F6f6;
+  border-radius: 8px;
+}
+.checkout-page form textarea {
+  overflow: auto;
+  resize: none;
+  width: 100%;
+  height: 50px;
+  background: #f6f6f6;
+  border: 1px solid #cecece;
+  border-radius: 8px 0 0 0;
+  padding: 8px 0 8px 10px;
+}
+.checkout-page form li {
+  list-style-type: none;
+  padding: 10px;
+}
+.checkout-page__confirm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.checkout-page__confirm p {
+  font-size: 30px;
+  padding: 20px;
+}
+.checkout-page__confirm a {
+  cursor: pointer;
+  transition: 0.5s;
+  color: green;
+  padding: 5px 12px;
+  border: 3px double green;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+}
+.checkout-page__confirm a:hover {
+  color: greenyellow;
+  border-color: greenyellow;
 }
 
 /*# sourceMappingURL=style.css.map */

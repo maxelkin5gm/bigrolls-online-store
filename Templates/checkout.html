@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ru">
+
+<%- include('partials/head.html'); %>
+
+<body>
+
+<%- include('partials/header.html'); %>
+
+<section class="about-line">
+    <h2>Оформление заказа</h2>
+</section>
+
+<section class="main">
+    <div class="container">
+        <div class="main__container">
+            <div class="sidebar">
+                <div class="sidebar__categories">
+                    <h2>Категории</h2>
+                    <% categories.forEach(function(category) { %>
+                    <a href="/<%= category.name %>"><%= category.name %></a>
+                    <% })%>
+                </div>
+
+                <div class="sidebar__video">
+                    <iframe src="https://www.youtube.com/embed/SXVInXHZaWE?autoplay=1&mute=1"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+
+
+            </div>
+
+            <div class="checkout-page">
+                <div class="checkout-page__container">
+                    <form class="checkout-page__form">
+                        <ul>
+                            <li>
+                                <label for="name">Имя:</label>
+                                <br>
+                                <input type="text" id="name">
+                            </li>
+                            <li>
+                                <label for="tel">Номер телефона:</label>
+                                <br>
+                                <input type="tel" id="tel">
+                            </li>
+                            <li>
+                                <label for="street">Улица:</label>
+                                <br>
+                                <input type="text" id="street">
+                            </li>
+                            <li>
+                                <label for="home">Дом:</label>
+                                <br>
+                                <input type="text" id="home">
+                            </li>
+                            <li>
+                                <label for="apartment">Квартира:</label>
+                                <br>
+                                <input type="text" id="apartment">
+                            </li>
+                            <li>
+                                <label for="entrance">Подъезд:</label>
+                                <br>
+                                <input type="text" id="entrance">
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="answer" value="a1" checked>
+                                    Самовывоз
+                                </label>
+                                <br>
+                                <label>
+                                    <input type="radio" name="answer" value="a2">
+                                    Доставка
+                                </label>
+                            </li>
+                            <li>
+                                <label for="info">Дополнительная информация:</label>
+                                <br>
+                                <textarea id="info"></textarea>
+                            </li>
+                        </ul>
+                    </form>
+
+                    <div class="checkout-page__confirm">
+                        <p>Сумма к оплате: 460 ₽</p>
+                        <a>Подтвердить заказ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+</body>
+</html>

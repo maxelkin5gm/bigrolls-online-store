@@ -9,6 +9,7 @@ const categoriesSchema = new mongoose.Schema(
                     required: true,
                     unique: true
                 },
+
                 imgURL: {
                     type: String,
                     default: ''
@@ -17,7 +18,6 @@ const categoriesSchema = new mongoose.Schema(
         ]
     })
 
-module.exports = mongoose.model('categories', categoriesSchema);
-
+module.exports = mongoose.model('categories', categoriesSchema)
 
 

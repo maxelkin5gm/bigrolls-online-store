@@ -9,9 +9,52 @@ const db = new DBHelper()
 
 
 app.get('/', async (req, res) => {
-    const data = await db.getCategories()
-    const html = await templateEngine.render('./Templates/index.html', {people: 'test'})
+    const categories = await db.getCategories()
+    const html = await templateEngine.render('./Templates/categories.html', {categories: categories})
     res.end(html)
+})
+
+app.get('/Роллы', async (req, res) => {
+    const categories = await db.getCategories()
+    const products = await db.getProducts('Роллы')
+    const html = await templateEngine.render('./Templates/products.html', {categories, products})
+    res.end(html)
+})
+
+app.get('/Сеты', async (req, res) => {
+    const categories = await db.getCategories()
+    const products = await db.getProducts('Сеты')
+    const html = await templateEngine.render('./Templates/products.html', {categories, products})
+    res.end(html)
+})
+
+app.get('/about', async (req, res) => {
+    const categories = await db.getCategories()
+    const html = await templateEngine.render('./Templates/about.html', {categories})
+    res.end(html)
+})
+
+app.get('/basket', async (req, res) => {
+    const categories = await db.getCategories()
+    const html = await templateEngine.render('./Templates/basket.html', {categories})
+    res.end(html)
+})
+
+app.get('/checkout', async (req, res) => {
+    const categories = await db.getCategories()
+    const html = await templateEngine.render('./Templates/checkout.html', {categories})
+    res.end(html)
+})
+
+app.get('/admin', async (req, res) => {
+    const html = await templateEngine.render('./Templates/admin.html', {})
+    res.end(html)
+})
+
+
+// api
+app.post('/create_category', (req, res) => {
+
 })
 
 
