@@ -46,8 +46,17 @@ app.get('/checkout', async (req, res) => {
     res.end(html)
 })
 
+
 app.get('/admin', async (req, res) => {
-    const html = await templateEngine.render('./Templates/admin.html', {})
+    const html = await templateEngine.render('./Templates/admin/admin-orders.html', {})
+    res.end(html)
+})
+app.get('/admin/products', async (req, res) => {
+    const html = await templateEngine.render('./Templates/admin/admin-products.html', {})
+    res.end(html)
+})
+app.get('/admin/categories', async (req, res) => {
+    const html = await templateEngine.render('./Templates/admin/admin-categories.html', {})
     res.end(html)
 })
 

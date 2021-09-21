@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin panel - BigRolls</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="http://127.0.0.1:8080/static/img/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="http://127.0.0.1:8080/static/css/admin.css">
+</head>
+<body>
+
+<%- include('partials/header.html'); %>
+
+<sectoins class="orders">
+    <div class="container">
+        <div class="orders__container">
+
+            <div class="order">
+                <div class="order__header">
+                    <h2 class="order__title">Заказ 1</h2>
+                    <div class="order__buttons">
+                        <a href="">Выполнен</a>
+                    </div>
+                </div>
+                <hr>
+                <h3>Позиции заказа: </h3>
+                <div class="order__items">
+                    <div class="order__item">
+                        <table>
+                            <tbody>
+                            <tr>
+                                <th>Номер</th>
+                                <th>Товар</th>
+                                <th>Цена</th>
+                                <th>Количество</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Калифорния</td>
+                                <td>220</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Филадельфия</td>
+                                <td>220</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Калифорния</td>
+                                <td>220</td>
+                                <td>1</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="order">
+                2
+            </div>
+
+        </div>
+    </div>
+</sectoins>
+
+
+</body>
+</html>

@@ -2,6 +2,9 @@
   color: black;
   padding: 30px;
   width: 75%;
+  order: -1;
+  border-right: 1px solid #cbcbcb;
+  margin-right: 10px;
 
   &__container {
     display: flex;

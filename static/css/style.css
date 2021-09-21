@@ -128,8 +128,12 @@ body {
   align-items: center;
   color: black;
 }
+.categories__link:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
 .categories span {
   font-weight: 700;
+  padding-bottom: 10px;
 }
 .categories img {
   width: 100%;
@@ -280,6 +284,9 @@ body {
   color: black;
   padding: 30px;
   width: 75%;
+  order: -1;
+  border-right: 1px solid #cbcbcb;
+  margin-right: 10px;
 }
 .checkout-page__container {
   display: flex;
