@@ -1,18 +1,48 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Admin panel - BigRolls</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="http://127.0.0.1:8080/static/img/favicon.ico" type="image/x-icon">
 
-    <link rel="stylesheet" href="http://127.0.0.1:8080/static/css/admin.css">
-</head>
+<%- include('partials/head.html'); %>
+
 <body>
 
 <%- include('partials/header.html'); %>
 
+<section class="add-category">
+    <div class="container">
+        <form>
+            <h2>Добавление категории</h2>
+            <label for="name">Название категории:
+                <br>
+                <input type="text" id="name">
+            </label>
+            <label for="imgURL">Изображение:
+                <br>
+                <input type="file" id="imgURL">
+            </label>
+            <button type="submit">Добавить</button>
+        </form>
+    </div>
+</section>
 
+
+<section class="categories">
+    <div class="container">
+        <div class="categories__container">
+            <h2>Категории:</h2>
+
+            <% categories.forEach(function(category) { %>
+            <div class="category">
+                <div class="category__info">
+                    <img src="<%= category.imgURL %>" alt="">
+                    <p><%= category.name %></p>
+                </div>
+                <a href="">Удалить</a>
+            </div>
+            <% }) %>
+
+        </div>
+    </div>
+</section>
 
 </body>
 </html>

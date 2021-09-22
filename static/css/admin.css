@@ -71,6 +71,10 @@ body {
 .order h3 {
   padding: 10px;
 }
+.order__client {
+  padding-left: 10px;
+  font-size: 18px;
+}
 .order__items table {
   background: wheat;
   border-spacing: 0;
@@ -90,6 +94,176 @@ body {
 }
 .order__items table th:nth-child(even) {
   background: #ff9911;
+}
+
+.add-product {
+  margin: 20px;
+}
+.add-product form {
+  text-align: center;
+  padding: 10px;
+  font-size: 16px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.add-product form label {
+  display: block;
+  padding: 5px;
+}
+.add-product form input, .add-product form select {
+  font-size: 16px;
+  padding: 6px 0 4px 10px;
+  border: 1px solid #cecece;
+  background: #F6F6f6;
+  border-radius: 8px;
+}
+.add-product form button {
+  margin-top: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  color: green;
+  padding: 5px 12px;
+  border: 3px double green;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  background: transparent;
+}
+.add-product form button:hover {
+  color: yellowgreen;
+  border-color: yellowgreen;
+}
+
+.products__container {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.products__container h2 {
+  margin-bottom: 20px;
+}
+
+.product {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #a4a4a4;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 10px;
+}
+.product__info {
+  display: flex;
+  align-items: center;
+}
+.product__info p {
+  padding: 0 30px;
+  font-size: 20px;
+}
+.product img {
+  max-width: 150px;
+}
+.product a {
+  margin-top: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  color: green;
+  padding: 5px 12px;
+  border: 3px double green;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  background: transparent;
+}
+.product a:hover {
+  color: yellowgreen;
+  border-color: yellowgreen;
+}
+
+.add-category {
+  margin: 20px;
+}
+.add-category form {
+  text-align: center;
+  padding: 10px;
+  font-size: 16px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.add-category form label {
+  display: block;
+  padding: 5px;
+}
+.add-category form input {
+  font-size: 16px;
+  padding: 6px 0 4px 10px;
+  border: 1px solid #cecece;
+  background: #F6F6f6;
+  border-radius: 8px;
+}
+.add-category form button {
+  margin-top: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  color: green;
+  padding: 5px 12px;
+  border: 3px double green;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  background: transparent;
+}
+.add-category form button:hover {
+  color: yellowgreen;
+  border-color: yellowgreen;
+}
+
+.categories__container {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.categories__container h2 {
+  margin-bottom: 20px;
+}
+
+.category {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #a4a4a4;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 10px;
+}
+.category__info {
+  display: flex;
+  align-items: center;
+}
+.category__info p {
+  padding: 10px;
+  font-size: 20px;
+}
+.category img {
+  max-width: 150px;
+}
+.category a {
+  margin-top: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  color: green;
+  padding: 5px 12px;
+  border: 3px double green;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  background: transparent;
+}
+.category a:hover {
+  color: yellowgreen;
+  border-color: yellowgreen;
 }
 
 /*# sourceMappingURL=admin.css.map */

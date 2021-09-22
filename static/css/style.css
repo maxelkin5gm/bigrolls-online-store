@@ -254,6 +254,9 @@ body {
 .basket-page table td {
   height: 80px;
 }
+.basket-page table h2 {
+  padding: 10px;
+}
 .basket-page hr {
   width: 98%;
 }
@@ -341,6 +344,24 @@ body {
 .checkout-page__confirm a:hover {
   color: greenyellow;
   border-color: greenyellow;
+}
+
+.completed-page {
+  color: black;
+  padding: 20px;
+  width: 75%;
+  order: -1;
+  border-right: 1px solid #cbcbcb;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.completed-page h1 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 40px;
+  text-align: center;
 }
 
 /*# sourceMappingURL=style.css.map */

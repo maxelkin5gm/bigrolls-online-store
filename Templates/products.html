@@ -35,7 +35,7 @@
 
                 <% products.forEach(function(product) { %>
                 <div class="products__item">
-                    <a class="products__link" href="/<%= product.category %>/<%= product.name %>">
+                    <a class="products__link">
                         <img src="<%= product.imgURL %>" alt="">
                         <span class="products__name"><%= product.name %></span>
                     </a>
@@ -43,7 +43,7 @@
                         <span><%= product.price %></span>
                         <span>₽</span>
                     </div>
-                    <a class="products__basket">В корзину</a>
+                    <a class="products__basket" data-id="<%= product.id %>" data-name="<%= product.name %>" data-price="<%= product.price %>" data-imgurl="<%= product.imgURL %>">В корзину</a>
                 </div>
                 <% })%>
 
@@ -59,6 +59,10 @@
         map
     </div>
 </section>
+
+
+<script type="module" src="http://localhost:8080/static/js/script.js"></script>
+<script type="module" src="http://localhost:8080/static/js/products-page.js"></script>
 
 </body>
 </html>

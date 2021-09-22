@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Admin panel - BigRolls</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="http://127.0.0.1:8080/static/img/favicon.ico" type="image/x-icon">
 
-    <link rel="stylesheet" href="http://127.0.0.1:8080/static/css/admin.css">
-</head>
+<%- include('partials/head.html'); %>
+
 <body>
 
 <%- include('partials/header.html'); %>
@@ -16,13 +11,25 @@
     <div class="container">
         <div class="orders__container">
 
+            <% orders.forEach(function(order) { %>
             <div class="order">
                 <div class="order__header">
-                    <h2 class="order__title">Заказ 1</h2>
+                    <h2 class="order__title">Заказ <%= order.id %></h2>
                     <div class="order__buttons">
-                        <a href="">Выполнен</a>
+                        <a href="">Удалить</a>
                     </div>
                 </div>
+                <hr>
+                <h3>Данные клиента:</h3>
+                <div class="order__client">
+                    <p><strong>Имя: </strong><%= order.client.name %></p>
+                    <p><strong>Номер телефона: </strong> <%= order.client.phone %></p>
+                    <p><strong>Улица: </strong><%= order.client.street %>, дом: <%= order.client.home %>, квартира: <%=
+                        order.client.apartment %></p>
+                    <p><strong>Доставка: </strong><%= order.info.delivery %></p>
+                    <p><strong>Дополнительная информация: </strong><%= order.info.additionalInfo %></p>
+                </div>
+                <br>
                 <hr>
                 <h3>Позиции заказа: </h3>
                 <div class="order__items">
@@ -35,35 +42,20 @@
                                 <th>Цена</th>
                                 <th>Количество</th>
                             </tr>
+                            <% for (product in order.basket) { %>
                             <tr>
-                                <td>1</td>
-                                <td>Калифорния</td>
-                                <td>220</td>
-                                <td>1</td>
+                                <td><%= product %></td>
+                                <td><%= order.basket[product].name %></td>
+                                <td><%= order.basket[product].price %></td>
+                                <td><%= order.basket[product].amount %></td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Филадельфия</td>
-                                <td>220</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Калифорния</td>
-                                <td>220</td>
-                                <td>1</td>
-                            </tr>
+                            <% } %>
                             </tbody>
                         </table>
                     </div>
                 </div>
-
-
             </div>
-
-            <div class="order">
-                2
-            </div>
+            <% })%>
 
         </div>
     </div>

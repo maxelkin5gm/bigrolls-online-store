@@ -1,16 +1,62 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Admin panel - BigRolls</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="http://127.0.0.1:8080/static/img/favicon.ico" type="image/x-icon">
 
-    <link rel="stylesheet" href="http://127.0.0.1:8080/static/css/admin.css">
-</head>
+<%- include('partials/head.html'); %>
+
 <body>
 
 <%- include('partials/header.html'); %>
+
+<section class="add-product">
+    <div class="container">
+        <form>
+            <h2>Добавление продукта</h2>
+            <label for="product-name">Название продукта:
+                <br>
+                <input type="text" id="product-name">
+            </label>
+            <label for="price">Стоимость:
+                <br>
+                <input type="text" id="price">
+            </label>
+            <label>Категория:
+                <br>
+                <select>
+                    <% categories.forEach(function(category) { %>
+                    <option><%= category.name %></option>
+                    <% }) %>
+                </select>
+            </label>
+            <label for="imgURL">Изображение:
+                <br>
+                <input type="file" id="imgURL">
+            </label>
+            <button type="submit">Добавить</button>
+        </form>
+    </div>
+</section>
+
+
+<section class="products">
+    <div class="container">
+        <div class="products__container">
+            <h2>Продукты:</h2>
+
+            <% products.forEach(function(product) { %>
+            <div class="product">
+                <div class="product__info">
+                    <img src="<%= product.imgURL %>" alt="">
+                    <p>Название:<br><%= product.name %></p>
+                    <p>Цена:<br><%= product.price %> ₽</p>
+                    <p>Категория:<br><%= product.category %></p>
+                </div>
+                <a href="" data-id="<%= product.id %>">Удалить</a>
+            </div>
+            <% }) %>
+
+        </div>
+    </div>
+</section>
 
 
 </body>

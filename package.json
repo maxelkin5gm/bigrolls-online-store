@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "http-server": "http-server ./ -c-1"
+    "http-server": "http-server ./ -c-1 --cors"
   },
   "repository": {
     "type": "git",

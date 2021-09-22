@@ -22,8 +22,23 @@ module.exports = class MExpress {
         })
     }
 
+    async getBody(req) {
+        const buffers = []
+        for await (const chunk of req) {
+            buffers.push(chunk)
+        }
+        const data = Buffer.concat(buffers).toString()
+        if (data) {
+            return JSON.parse(data)
+        } else {
+            return ""
+        }
+
+    }
+
     listen(PORT, callBack) {
-        http.createServer((req, res) => {
+        http.createServer(async (req, res) => {
+            req.body = await this.getBody(req)
             let isFound = false
             for (let i = 0; i < this._routers.length; ++i) {
 

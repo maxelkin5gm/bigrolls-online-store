@@ -1,8 +1,9 @@
 const mongoose = require("mongoose")
 const config = require("../../config")
 //models
-const productsModel = require('./productsModel.js')
-const categoriesModel = require('./categoriesModel.js')
+const productsModel = require('./productsModel')
+const categoriesModel = require('./categoriesModel')
+const ordersModel = require('./ordersModel')
 
 
 module.exports = class DBHelper {
@@ -15,8 +16,20 @@ module.exports = class DBHelper {
         return data.categories
     }
 
-    async getProducts(category) {
-        return await productsModel.find({category: category})
+    getAllProducts() {
+        return productsModel.find()
+    }
+
+    getProducts(category) {
+        return productsModel.find({category: category})
+    }
+
+    getOrders() {
+        return ordersModel.find()
+    }
+
+    createOrder(dataOrder) {
+        new ordersModel(dataOrder).save()
     }
 
 

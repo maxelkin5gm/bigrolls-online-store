@@ -62,18 +62,13 @@
                                 <input type="text" id="apartment">
                             </li>
                             <li>
-                                <label for="entrance">Подъезд:</label>
-                                <br>
-                                <input type="text" id="entrance">
-                            </li>
-                            <li>
                                 <label>
-                                    <input type="radio" name="answer" value="a1" checked>
+                                    <input type="radio" name="answer" value="Самовывоз" checked>
                                     Самовывоз
                                 </label>
                                 <br>
                                 <label>
-                                    <input type="radio" name="answer" value="a2">
+                                    <input type="radio" name="answer" value="Доставка">
                                     Доставка
                                 </label>
                             </li>
@@ -86,8 +81,8 @@
                     </form>
 
                     <div class="checkout-page__confirm">
-                        <p>Сумма к оплате: 460 ₽</p>
-                        <a>Подтвердить заказ</a>
+                        <p class="checkout-page__order-price">Сумма к оплате: 0 ₽</p>
+                        <a class="checkout-page__complete-btn" href="/completed">Подтвердить заказ</a>
                     </div>
                 </div>
             </div>
@@ -96,6 +91,8 @@
 
 </section>
 
+<script type="module" src="http://localhost:8080/static/js/checkout-page.js"></script>
+<script type="module" src="http://localhost:8080/static/js/script.js"></script>
 
 </body>
 </html>

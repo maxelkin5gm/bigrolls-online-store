@@ -9,6 +9,7 @@
 
 <%- include('partials/about-line.html'); %>
 
+
 <section class="main">
     <div class="container">
         <div class="main__container">
@@ -30,17 +31,8 @@
 
             </div>
 
-            <div class="categories">
-
-                <% categories.forEach(function(category) { %>
-                <div class="categories__item">
-                    <a class="categories__link" href="/<%= category.name %>">
-                        <img src="<%= category.imgURL %>" alt="">
-                        <span><%= category.name %></span>
-                    </a>
-                </div>
-                <% })%>
-
+            <div class="completed-page">
+                <h1>Спасибо за заказ.</h1>
             </div>
         </div>
     </div>

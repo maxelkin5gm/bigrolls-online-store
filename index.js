@@ -46,24 +46,35 @@ app.get('/checkout', async (req, res) => {
     res.end(html)
 })
 
+app.get('/completed', async (req, res) => {
+    const categories = await db.getCategories()
+    const html = await templateEngine.render('./Templates/completed.html', {categories})
+    res.end(html)
+})
+
 
 app.get('/admin', async (req, res) => {
-    const html = await templateEngine.render('./Templates/admin/admin-orders.html', {})
+    const orders = await db.getOrders()
+    const html = await templateEngine.render('./Templates/admin/admin-orders.html', {orders})
     res.end(html)
 })
 app.get('/admin/products', async (req, res) => {
-    const html = await templateEngine.render('./Templates/admin/admin-products.html', {})
+    const categories = await db.getCategories()
+    const products = await db.getAllProducts()
+    const html = await templateEngine.render('./Templates/admin/admin-products.html', {categories, products})
     res.end(html)
 })
 app.get('/admin/categories', async (req, res) => {
-    const html = await templateEngine.render('./Templates/admin/admin-categories.html', {})
+    const categories = await db.getCategories()
+    const html = await templateEngine.render('./Templates/admin/admin-categories.html', {categories})
     res.end(html)
 })
 
 
 // api
-app.post('/create_category', (req, res) => {
-
+app.post('/api/create_order', async (req, res) => {
+    await db.createOrder(req.body)
+    res.end()
 })
 
 
