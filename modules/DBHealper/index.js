@@ -11,9 +11,9 @@ module.exports = class DBHelper {
         this.connect()
     }
 
-    async getCategories() {
-        const data = await categoriesModel.findOne()
-        return data.categories
+    // get
+    getCategories() {
+        return categoriesModel.find()
     }
 
     getAllProducts() {
@@ -28,8 +28,33 @@ module.exports = class DBHelper {
         return ordersModel.find()
     }
 
+
+    // create
     createOrder(dataOrder) {
         new ordersModel(dataOrder).save()
+    }
+
+    async createCategory(dataCategory) {
+        await new categoriesModel(dataCategory).save()
+    }
+
+    async createProduct(dataProduct) {
+        await new productsModel(dataProduct).save()
+    }
+
+
+    // delete
+    async deleteCategory(idCategory) {
+        await categoriesModel.findOneAndDelete({_id: idCategory})
+    }
+
+    async deleteProduct(idProduct) {
+        await productsModel.findOneAndDelete({_id: idProduct})
+    }
+
+    async deleteOrder(idOrder) {
+        console.log(idOrder)
+        await ordersModel.findOneAndDelete({_id: idOrder})
     }
 
 

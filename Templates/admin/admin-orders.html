@@ -16,7 +16,7 @@
                 <div class="order__header">
                     <h2 class="order__title">Заказ <%= order.id %></h2>
                     <div class="order__buttons">
-                        <a href="">Удалить</a>
+                        <a data-id="<%= order.id %>" class="order__deleteBtn" href="">Удалить</a>
                     </div>
                 </div>
                 <hr>
@@ -61,6 +61,8 @@
     </div>
 </sectoins>
 
+
+<script src="http://localhost:8080/static/js/admin/adminOrders.js"></script>
 
 </body>
 </html>

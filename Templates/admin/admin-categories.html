@@ -13,11 +13,11 @@
             <h2>Добавление категории</h2>
             <label for="name">Название категории:
                 <br>
-                <input type="text" id="name">
+                <input type="text" id="name" name="name" required>
             </label>
             <label for="imgURL">Изображение:
                 <br>
-                <input type="file" id="imgURL">
+                <input type="file" id="imgURL" name="imgURL">
             </label>
             <button type="submit">Добавить</button>
         </form>
@@ -36,13 +36,16 @@
                     <img src="<%= category.imgURL %>" alt="">
                     <p><%= category.name %></p>
                 </div>
-                <a href="">Удалить</a>
+                <a class="category__deleteBtn" data-id="<%= category.id %>" href="">Удалить</a>
             </div>
             <% }) %>
 
         </div>
     </div>
 </section>
+
+
+<script src="http://localhost:8080/static/js/admin/adminCategories.js"></script>
 
 </body>
 </html>

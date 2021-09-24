@@ -11,14 +11,14 @@ btn.addEventListener('click', (e) => {
     const order = {
         client: {
             name: form.name.value,
-            phone: form.tel.value,
+            tel: form.tel.value,
             street: form.street.value,
             home: form.home.value,
             apartment: form.apartment.value,
         },
 
         info: {
-            delivery: form.answer.value,
+            delivery: form.delivery.value,
             additionalInfo: form.info.value,
             totalPrice: total
         },
@@ -33,6 +33,7 @@ btn.addEventListener('click', (e) => {
         },
         body: JSON.stringify(order)
     }).then((res) => {
+        localStorage.removeItem('basket')
         location.href = '/completed'
     })
 })

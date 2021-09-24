@@ -13,45 +13,38 @@ app.get('/', async (req, res) => {
     const html = await templateEngine.render('./Templates/categories.html', {categories: categories})
     res.end(html)
 })
-
 app.get('/Роллы', async (req, res) => {
     const categories = await db.getCategories()
     const products = await db.getProducts('Роллы')
     const html = await templateEngine.render('./Templates/products.html', {categories, products})
     res.end(html)
 })
-
 app.get('/Сеты', async (req, res) => {
     const categories = await db.getCategories()
     const products = await db.getProducts('Сеты')
     const html = await templateEngine.render('./Templates/products.html', {categories, products})
     res.end(html)
 })
-
 app.get('/about', async (req, res) => {
     const categories = await db.getCategories()
     const html = await templateEngine.render('./Templates/about.html', {categories})
     res.end(html)
 })
-
 app.get('/basket', async (req, res) => {
     const categories = await db.getCategories()
     const html = await templateEngine.render('./Templates/basket.html', {categories})
     res.end(html)
 })
-
 app.get('/checkout', async (req, res) => {
     const categories = await db.getCategories()
     const html = await templateEngine.render('./Templates/checkout.html', {categories})
     res.end(html)
 })
-
 app.get('/completed', async (req, res) => {
     const categories = await db.getCategories()
     const html = await templateEngine.render('./Templates/completed.html', {categories})
     res.end(html)
 })
-
 
 app.get('/admin', async (req, res) => {
     const orders = await db.getOrders()
@@ -73,7 +66,35 @@ app.get('/admin/categories', async (req, res) => {
 
 // api
 app.post('/api/create_order', async (req, res) => {
-    await db.createOrder(req.body)
+    await MExpress.getJSON(req)
+    await db.createOrder(req.json)
+    res.end()
+})
+app.post('/api/delete_order', async (req, res) => {
+    await MExpress.getJSON(req)
+    await db.deleteOrder(req.json.idOrder)
+    res.end()
+})
+app.post('/api/create_category', (req, res) => {
+    MExpress.getFormData(req, async (formData) => {
+        await db.createCategory(formData)
+        res.end()
+    })
+})
+app.post('/api/delete_category', async (req, res) => {
+    await MExpress.getJSON(req)
+    await db.deleteCategory(req.json.idCategory)
+    res.end()
+})
+app.post('/api/create_product', (req, res) => {
+    MExpress.getFormData(req, async (formData) => {
+        await db.createProduct(formData)
+        res.end()
+    })
+})
+app.post('/api/delete_product', async (req, res) => {
+    await MExpress.getJSON(req)
+    await db.deleteProduct(req.json.idProduct)
     res.end()
 })
 

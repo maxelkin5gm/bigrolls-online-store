@@ -6,7 +6,7 @@ const ordersSchema = new mongoose.Schema({
         name: {
             type: String
         },
-        phone: {
+        tel: {
             type: String,
             required: true
         },
@@ -31,7 +31,8 @@ const ordersSchema = new mongoose.Schema({
         },
 
         totalPrice: {
-            type: Number
+            type: Number,
+            required: true
         },
     },
 

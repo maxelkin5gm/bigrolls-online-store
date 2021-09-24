@@ -19,7 +19,8 @@
   "homepage": "https://github.com/maxelkin5gm/OnlineStore#readme",
   "dependencies": {
     "ejs": "^3.1.6",
-    "mongoose": "^6.0.6"
+    "mongoose": "^6.0.6",
+    "multiparty": "^4.2.2"
   },
   "devDependencies": {
     "http-server": "^13.0.2"

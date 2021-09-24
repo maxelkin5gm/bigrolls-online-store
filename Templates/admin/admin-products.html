@@ -9,19 +9,19 @@
 
 <section class="add-product">
     <div class="container">
-        <form>
+        <form method="post">
             <h2>Добавление продукта</h2>
-            <label for="product-name">Название продукта:
+            <label for="nameProduct">Название продукта:
                 <br>
-                <input type="text" id="product-name">
+                <input type="text" id="nameProduct" name="name" required>
             </label>
             <label for="price">Стоимость:
                 <br>
-                <input type="text" id="price">
+                <input type="text" id="price" name="price">
             </label>
             <label>Категория:
                 <br>
-                <select>
+                <select id="category" name="category">
                     <% categories.forEach(function(category) { %>
                     <option><%= category.name %></option>
                     <% }) %>
@@ -29,7 +29,7 @@
             </label>
             <label for="imgURL">Изображение:
                 <br>
-                <input type="file" id="imgURL">
+                <input type="file" id="imgURL" name="imgURL">
             </label>
             <button type="submit">Добавить</button>
         </form>
@@ -50,7 +50,7 @@
                     <p>Цена:<br><%= product.price %> ₽</p>
                     <p>Категория:<br><%= product.category %></p>
                 </div>
-                <a href="" data-id="<%= product.id %>">Удалить</a>
+                <a class="product__deleteBtn" href="" data-id="<%= product.id %>">Удалить</a>
             </div>
             <% }) %>
 
@@ -58,6 +58,8 @@
     </div>
 </section>
 
+
+<script src="http://localhost:8080/static/js/admin/adminProducts.js"></script>
 
 </body>
 </html>

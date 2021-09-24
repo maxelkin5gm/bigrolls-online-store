@@ -1,4 +1,8 @@
 const http = require('http')
+const multiparty = require("multiparty");
+const config = require("../../config");
+const fs = require("fs");
+
 
 module.exports = class MExpress {
     _routers = []
@@ -22,23 +26,46 @@ module.exports = class MExpress {
         })
     }
 
-    async getBody(req) {
+    static async getJSON(req) {
         const buffers = []
         for await (const chunk of req) {
             buffers.push(chunk)
         }
         const data = Buffer.concat(buffers).toString()
-        if (data) {
-            return JSON.parse(data)
-        } else {
-            return ""
-        }
+        const json = JSON.parse(data)
+        req.json = json
+        return json
+    }
 
+    static getFormData(req, callBack) {
+        const form = new multiparty.Form({
+            uploadDir: config.uploadImgDir
+        })
+
+        form.parse(req, function (err, fields, files) {
+            if (err) {
+                console.log(err)
+                return
+            }
+            const formData = {}
+            for (let field in fields) {
+                formData[field] = fields[field][0]
+            }
+            for (let file in files) {
+                if (files[file][0].size === 0) {
+                    fs.unlinkSync(files[file][0].path)
+                    formData[file] = config.placeholderURL
+                } else {
+                    formData[file] = config.staticDir + files[file][0].path
+                }
+            }
+
+            callBack(formData)
+        })
     }
 
     listen(PORT, callBack) {
         http.createServer(async (req, res) => {
-            req.body = await this.getBody(req)
             let isFound = false
             for (let i = 0; i < this._routers.length; ++i) {
 
