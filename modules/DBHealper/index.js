@@ -12,7 +12,7 @@ module.exports = class DBHelper {
     }
 
     // get
-    getCategories() {
+    getAllCategories() {
         return categoriesModel.find()
     }
 

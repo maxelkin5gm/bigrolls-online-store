@@ -1,8 +1,8 @@
 import BasketModule from "./modules/BasketModule.js";
 
 
-const total = BasketModule.renderOrderPrice('.checkout-page__order-price')
-
+BasketModule.renderOrderPrice('.checkout-page__order-price')
+const totalPrice = BasketModule.getTotal()
 
 const btn = document.querySelector('.checkout-page__complete-btn')
 btn.addEventListener('click', (e) => {
@@ -20,7 +20,7 @@ btn.addEventListener('click', (e) => {
         info: {
             delivery: form.delivery.value,
             additionalInfo: form.info.value,
-            totalPrice: total
+            totalPrice: totalPrice
         },
 
         basket: JSON.parse(localStorage.getItem('basket'))

@@ -7,7 +7,8 @@ const fs = require("fs");
 module.exports = class MExpress {
     _routers = []
 
-    constructor() {
+    constructor(db) {
+        this.db = db
     }
 
     get(url, callBack) {
@@ -61,6 +62,14 @@ module.exports = class MExpress {
             }
 
             callBack(formData)
+        })
+    }
+
+    initCategories(callBack) {
+        this.db.getAllCategories().then((categories) => {
+            categories.forEach((category) => {
+                callBack(category)
+            })
         })
     }
 

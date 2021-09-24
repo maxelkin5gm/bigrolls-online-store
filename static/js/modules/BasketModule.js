@@ -2,11 +2,7 @@ export default class BasketModule {
     static basket = JSON.parse(localStorage.getItem('basket'))
     static indicator = document.querySelector('.basket-menu__indicator')
     static tbody = document.querySelector('tbody')
-    static orderPrice = document.querySelector('.basket-page__orderPrice')
 
-    constructor() {
-
-    }
 
     static updateIndicator() {
         if (this.basket) {
@@ -86,59 +82,39 @@ export default class BasketModule {
         }
     }
 
+    static getTotal() {
+        let count = 0;
+        for (let product in this.basket) {
+            count = count + (this.basket[product].price * this.basket[product].amount)
+        }
+        return count
+    }
+
     static renderBasket() {
         if (this.basket) {
-            let count = 0;
             for (let product in this.basket) {
-                const tr = document.createElement('tr')
-
-                const td1 = document.createElement('td')
-                td1.classList.add('basket-page__delete')
-                td1.setAttribute('data-id', product)
-                td1.innerText = 'X'
-
-                const td2 = document.createElement('td')
-                td2.classList.add('basket-page__img')
-                const img = document.createElement('img')
-                img.setAttribute('src', this.basket[product].imgURL)
-                td2.append(img)
-
-                const td3 = document.createElement('td')
-                td3.classList.add('basket-page__name')
-                td3.innerText = this.basket[product].name
-
-                const td4 = document.createElement('td')
-                td4.classList.add('basket-page__name')
-                td4.innerText = this.basket[product].amount
-
-                const td5 = document.createElement('td')
-                td5.classList.add('basket-page__price')
-                td5.innerText = String(this.basket[product].price) + ' ₽'
-
-                tr.append(td1, td2, td3, td4, td5)
-                this.tbody.append(tr)
-
-                count = count + (this.basket[product].price * this.basket[product].amount)
+                const tr = `
+                <tr>
+                    <td data-id="${product}" class="basket-page__delete">X</td>
+                    <td class="basket-page__img">
+                        <img src="${this.basket[product].imgURL}" alt="productIMG">
+                    </td>
+                    <td class="basket-page__name">${this.basket[product].name}</td>
+                    <td class="basket-page__name">${this.basket[product].amount}</td>
+                    <td class="basket-page__price">${String(this.basket[product].price) + ' ₽'}</td>
+                </tr>`
+                this.tbody.innerHTML += tr
             }
-
-            this.orderPrice.innerText = 'Сумма заказа: ' + String(count) + ' ₽'
+            this.renderOrderPrice('.basket-page__orderPrice')
         } else {
-            const h2 = document.createElement('h2')
-            h2.innerText = 'Корзина пуста'
-            this.tbody.append(h2)
+            this.tbody.innerHTML = `<h2 style="text-align: center">Корзина пуста</h2>`
         }
     }
 
     static renderOrderPrice(selector) {
         const orderPrice = document.querySelector(selector)
-        if (this.basket) {
-            let count = 0;
-            for (let product in this.basket) {
-                count = count + (this.basket[product].price * this.basket[product].amount)
-            }
-            orderPrice.innerText = 'Сумма заказа: ' + String(count) + ' ₽'
-            return count
-        }
+        const total = this.getTotal()
+        orderPrice.innerText = 'Сумма заказа: ' + String(total) + ' ₽'
     }
 
 }

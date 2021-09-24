@@ -9,7 +9,7 @@
 
 <section class="add-product">
     <div class="container">
-        <form method="post">
+        <form>
             <h2>Добавление продукта</h2>
             <label for="nameProduct">Название продукта:
                 <br>
@@ -17,11 +17,11 @@
             </label>
             <label for="price">Стоимость:
                 <br>
-                <input type="text" id="price" name="price">
+                <input type="text" id="price" name="price" required>
             </label>
             <label>Категория:
                 <br>
-                <select id="category" name="category">
+                <select id="category" name="category" required>
                     <% categories.forEach(function(category) { %>
                     <option><%= category.name %></option>
                     <% }) %>

@@ -1,8 +1,7 @@
-const submitBtn = document.querySelector('button')
 const form = document.forms[0]
 
 // create
-submitBtn.addEventListener('click', (e) => {
+form.addEventListener('submit', (e) => {
     e.preventDefault()
 
     fetch('/api/create_category', {

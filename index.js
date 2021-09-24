@@ -3,47 +3,44 @@ const config = require("./config")
 const TemplateEngine = require("./modules/TemplateEngine")
 const DBHelper = require("./modules/DBHealper")
 
-const app = new MExpress()
-const templateEngine = new TemplateEngine()
+
 const db = new DBHelper()
+const app = new MExpress(db)
+const templateEngine = new TemplateEngine()
 
 
 app.get('/', async (req, res) => {
-    const categories = await db.getCategories()
+    const categories = await db.getAllCategories()
     const html = await templateEngine.render('./Templates/categories.html', {categories: categories})
     res.end(html)
 })
-app.get('/Роллы', async (req, res) => {
-    const categories = await db.getCategories()
-    const products = await db.getProducts('Роллы')
-    const html = await templateEngine.render('./Templates/products.html', {categories, products})
-    res.end(html)
-})
-app.get('/Сеты', async (req, res) => {
-    const categories = await db.getCategories()
-    const products = await db.getProducts('Сеты')
-    const html = await templateEngine.render('./Templates/products.html', {categories, products})
-    res.end(html)
-})
 app.get('/about', async (req, res) => {
-    const categories = await db.getCategories()
+    const categories = await db.getAllCategories()
     const html = await templateEngine.render('./Templates/about.html', {categories})
     res.end(html)
 })
 app.get('/basket', async (req, res) => {
-    const categories = await db.getCategories()
+    const categories = await db.getAllCategories()
     const html = await templateEngine.render('./Templates/basket.html', {categories})
     res.end(html)
 })
 app.get('/checkout', async (req, res) => {
-    const categories = await db.getCategories()
+    const categories = await db.getAllCategories()
     const html = await templateEngine.render('./Templates/checkout.html', {categories})
     res.end(html)
 })
 app.get('/completed', async (req, res) => {
-    const categories = await db.getCategories()
+    const categories = await db.getAllCategories()
     const html = await templateEngine.render('./Templates/completed.html', {categories})
     res.end(html)
+})
+app.initCategories((category) => {
+    app.get(`/${category.name}`, async (req, res) => {
+        const categories = await db.getAllCategories()
+        const products = await db.getProducts(category.name)
+        const html = await templateEngine.render('./Templates/products.html', {categories, products})
+        res.end(html)
+    })
 })
 
 app.get('/admin', async (req, res) => {
@@ -52,13 +49,13 @@ app.get('/admin', async (req, res) => {
     res.end(html)
 })
 app.get('/admin/products', async (req, res) => {
-    const categories = await db.getCategories()
+    const categories = await db.getAllCategories()
     const products = await db.getAllProducts()
     const html = await templateEngine.render('./Templates/admin/admin-products.html', {categories, products})
     res.end(html)
 })
 app.get('/admin/categories', async (req, res) => {
-    const categories = await db.getCategories()
+    const categories = await db.getAllCategories()
     const html = await templateEngine.render('./Templates/admin/admin-categories.html', {categories})
     res.end(html)
 })
@@ -78,6 +75,12 @@ app.post('/api/delete_order', async (req, res) => {
 app.post('/api/create_category', (req, res) => {
     MExpress.getFormData(req, async (formData) => {
         await db.createCategory(formData)
+        app.get(`/${formData.name}`, async (req, res) => {
+            const categories = await db.getAllCategories()
+            const products = await db.getProducts(formData.name)
+            const html = await templateEngine.render('./Templates/products.html', {categories, products})
+            res.end(html)
+        })
         res.end()
     })
 })
