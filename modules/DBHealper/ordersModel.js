@@ -36,10 +36,26 @@ const ordersSchema = new mongoose.Schema({
         },
     },
 
-
     basket: {
-        type: Object,
-        required: true
+        type: Map,
+        required: true,
+        of: new mongoose.Schema({
+            name: {
+                type: String,
+                required: true
+            },
+            price: {
+                type: Number,
+                required: true
+            },
+            imgURL: {
+                type: String,
+            },
+            amount: {
+                type: Number,
+                required: true
+            },
+        })
     }
 })
 
