@@ -23,9 +23,9 @@
                 <h3>Данные клиента:</h3>
                 <div class="order__client">
                     <p><strong>Имя: </strong><%= order.client.name %></p>
-                    <p><strong>Номер телефона: </strong> <%= order.client.phone %></p>
-                    <p><strong>Улица: </strong><%= order.client.street %>, дом: <%= order.client.home %>, квартира: <%=
-                        order.client.apartment %></p>
+                    <p><strong>Номер телефона: </strong> <%= order.client.tel %></p>
+                    <p><strong>Улица: </strong><%= order.client.street %><strong>, дом:</strong> <%= order.client.home
+                        %><strong>, квартира:</strong> <%= order.client.apartment %></p>
                     <p><strong>Доставка: </strong><%= order.info.delivery %></p>
                     <p><strong>Дополнительная информация: </strong><%= order.info.additionalInfo %></p>
                 </div>

@@ -24,7 +24,10 @@ deleteBtns.forEach((btn) => {
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
             },
-            body: JSON.stringify({idCategory: btn.dataset.id})
+            body: JSON.stringify({
+                idCategory: btn.dataset.id,
+                nameCategory: btn.dataset.name
+            })
         }).then((res) => {
             location.reload()
         })

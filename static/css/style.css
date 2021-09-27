@@ -330,7 +330,7 @@ body {
   font-size: 30px;
   padding: 20px;
 }
-.checkout-page__confirm a {
+.checkout-page__confirm button {
   cursor: pointer;
   transition: 0.5s;
   color: green;
@@ -340,8 +340,9 @@ body {
   font-weight: 700;
   line-height: 1.5;
   letter-spacing: 0.1em;
+  background: transparent;
 }
-.checkout-page__confirm a:hover {
+.checkout-page__confirm button:hover {
   color: greenyellow;
   border-color: greenyellow;
 }

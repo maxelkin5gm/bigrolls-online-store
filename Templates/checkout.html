@@ -34,7 +34,7 @@
 
             <div class="checkout-page">
                 <div class="checkout-page__container">
-                    <form class="checkout-page__form">
+                    <form class="checkout-page__form" id="form">
                         <ul>
                             <li>
                                 <label for="name">Имя:</label>
@@ -44,7 +44,7 @@
                             <li>
                                 <label for="tel">Номер телефона:</label>
                                 <br>
-                                <input type="tel" id="tel" name="tel">
+                                <input type="tel" id="tel" name="tel" required>
                             </li>
                             <li>
                                 <label for="street">Улица:</label>
@@ -82,7 +82,7 @@
 
                     <div class="checkout-page__confirm">
                         <p class="checkout-page__order-price">Сумма к оплате: 0 ₽</p>
-                        <a class="checkout-page__complete-btn" href="/completed">Подтвердить заказ</a>
+                        <button form="form" type="submit" class="checkout-page__complete-btn">Подтвердить заказ</button>
                     </div>
                 </div>
             </div>

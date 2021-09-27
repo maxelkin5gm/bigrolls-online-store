@@ -52,7 +52,7 @@
       padding: 20px;
     }
 
-    a {
+    button {
       cursor: pointer;
       transition: 0.5s;
       color: green;
@@ -62,6 +62,7 @@
       font-weight: 700;
       line-height: 1.5;
       letter-spacing: 0.1em;
+      background: transparent;
 
       &:hover {
         color: greenyellow;

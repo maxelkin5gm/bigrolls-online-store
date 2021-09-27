@@ -8,6 +8,15 @@ const db = new DBHelper()
 const app = new MExpress(db)
 const templateEngine = new TemplateEngine()
 
+app.use(MExpress.getJSON)
+app.use((req, res, next) => {
+    console.log(1)
+    next()
+})
+app.use((req, res, next) => {
+    console.log(2)
+    next()
+})
 
 app.get('/', async (req, res) => {
     const categories = await db.getAllCategories()
@@ -63,9 +72,13 @@ app.get('/admin/categories', async (req, res) => {
 
 // api
 app.post('/api/create_order', async (req, res) => {
-    await MExpress.getJSON(req)
-    await db.createOrder(req.json)
-    res.end()
+    try {
+        await MExpress.getJSON(req)
+        await db.createOrder(req.json)
+        res.end()
+    } catch (err) {
+        res.end(400, err)
+    }
 })
 app.post('/api/delete_order', async (req, res) => {
     await MExpress.getJSON(req)
@@ -73,27 +86,28 @@ app.post('/api/delete_order', async (req, res) => {
     res.end()
 })
 app.post('/api/create_category', (req, res) => {
-    MExpress.getFormData(req, async (formData) => {
-        await db.createCategory(formData)
-        app.get(`/${formData.name}`, async (req, res) => {
-            const categories = await db.getAllCategories()
-            const products = await db.getProducts(formData.name)
-            const html = await templateEngine.render('./Templates/products.html', {categories, products})
-            res.end(html)
-        })
-        res.end()
-    })
+    // MExpress.getFormData(req, async (formData) => {
+    //     await db.createCategory(formData)
+    //     app.get(`/${formData.name}`, async (req, res) => {
+    //         const categories = await db.getAllCategories()
+    //         const products = await db.getProducts(formData.name)
+    //         const html = await templateEngine.render('./Templates/products.html', {categories, products})
+    //         res.end(html)
+    //     })
+    //     res.end()
+    // })
 })
 app.post('/api/delete_category', async (req, res) => {
     await MExpress.getJSON(req)
     await db.deleteCategory(req.json.idCategory)
+    app.deleteRouter('GET', `/${req.json.nameCategory}`)
     res.end()
 })
 app.post('/api/create_product', (req, res) => {
-    MExpress.getFormData(req, async (formData) => {
-        await db.createProduct(formData)
-        res.end()
-    })
+    // MExpress.getFormData(req, async (formData) => {
+    //     await db.createProduct(formData)
+    //     res.end()
+    // })
 })
 app.post('/api/delete_product', async (req, res) => {
     await MExpress.getJSON(req)

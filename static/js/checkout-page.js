@@ -4,8 +4,8 @@ import BasketModule from "./modules/BasketModule.js";
 BasketModule.renderOrderPrice('.checkout-page__order-price')
 const totalPrice = BasketModule.getTotal()
 
-const btn = document.querySelector('.checkout-page__complete-btn')
-btn.addEventListener('click', (e) => {
+const form = document.forms[0]
+form.addEventListener('submit', (e) => {
     e.preventDefault()
     const form = document.forms[0]
     const order = {

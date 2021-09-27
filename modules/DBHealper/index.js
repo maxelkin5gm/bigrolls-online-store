@@ -24,8 +24,19 @@ module.exports = class DBHelper {
         return productsModel.find({category: category})
     }
 
-    getOrders() {
-        return ordersModel.find()
+    async getOrders() {
+        let orders = []
+        let ordersData = await ordersModel.find()
+        ordersData.forEach(function(item, i) {
+            orders.push({
+                id: item.id,
+                client: item.client,
+                info: item.info,
+                basket: Object.fromEntries(item.basket.entries())
+            })
+        })
+
+        return orders
     }
 
 
@@ -53,7 +64,6 @@ module.exports = class DBHelper {
     }
 
     async deleteOrder(idOrder) {
-        console.log(idOrder)
         await ordersModel.findOneAndDelete({_id: idOrder})
     }
 
