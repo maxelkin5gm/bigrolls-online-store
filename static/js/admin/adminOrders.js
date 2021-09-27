@@ -7,7 +7,7 @@ deleteBtns.forEach((btn) => {
         fetch('/api/delete_order', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json;charset=utf-8'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({idOrder: btn.dataset.id})
         }).then((res) => {

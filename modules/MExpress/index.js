@@ -14,8 +14,7 @@ module.exports = class MExpress {
     _indexMiddleware = 0
 
 
-    constructor(db) {
-        this.db = db
+    constructor() {
     }
 
     use(callBack) {
@@ -35,7 +34,7 @@ module.exports = class MExpress {
     }
 
     static async getJSON(req, res, next) {
-        if (req.headers['Content-Type'] !== 'application/json') {
+        if (req.headers['content-type'] !== 'application/json') {
             next()
         } else {
             const buffers = []
@@ -48,8 +47,9 @@ module.exports = class MExpress {
         }
     }
 
-    static getFormData(req, callBack) {
+    static getFormData(req, res, next) {
         if (!req.headers['content-type']) {
+            next()
             return
         }
         const contentType = req.headers['content-type'].split(';')[0].trim()
@@ -76,14 +76,16 @@ module.exports = class MExpress {
                         formData[file] = config.staticDir + files[file][0].path
                     }
                 }
-
-                callBack(formData)
+                req.formData = formData
+                next()
             })
+        } else {
+            next()
         }
     }
 
-    initCategories(callBack) {
-        this.db.getAllCategories().then((categories) => {
+    bindRoutersCategories(db, callBack) {
+        db.getAllCategories().then((categories) => {
             categories.forEach((category) => {
                 callBack(category)
             })
@@ -101,7 +103,6 @@ module.exports = class MExpress {
         }
     }
 
-
     next() {
         const middleware = this._middleware
 
@@ -113,7 +114,6 @@ module.exports = class MExpress {
             this.routing(this.req, this.res)
         }
     }
-
 
     listen(PORT, callBack) {
         http.createServer(async (req, res) => {

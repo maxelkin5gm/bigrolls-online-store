@@ -1,5 +1,6 @@
 const mongoose = require("mongoose")
 const config = require("../../config")
+const fs = require('fs')
 //models
 const productsModel = require('./productsModel')
 const categoriesModel = require('./categoriesModel')
@@ -27,7 +28,7 @@ module.exports = class DBHelper {
     async getOrders() {
         let orders = []
         let ordersData = await ordersModel.find()
-        ordersData.forEach(function(item, i) {
+        ordersData.forEach(function (item, i) {
             orders.push({
                 id: item.id,
                 client: item.client,
@@ -65,6 +66,15 @@ module.exports = class DBHelper {
 
     async deleteOrder(idOrder) {
         await ordersModel.findOneAndDelete({_id: idOrder})
+    }
+
+    deleteImg(imgURL) {
+        let nameImg = imgURL.split('/')
+        nameImg = nameImg[nameImg.length - 1]
+        if (nameImg === 'placeholder.webp') {
+            return
+        }
+        fs.unlinkSync(nameImg)
     }
 
 

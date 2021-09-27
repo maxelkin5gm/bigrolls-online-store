@@ -22,11 +22,12 @@ deleteBtns.forEach((btn) => {
         fetch('/api/delete_category', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json;charset=utf-8'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 idCategory: btn.dataset.id,
-                nameCategory: btn.dataset.name
+                nameCategory: btn.dataset.name,
+                imgURL: btn.dataset.imgurl
             })
         }).then((res) => {
             location.reload()
