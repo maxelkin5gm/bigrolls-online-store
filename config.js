@@ -10,4 +10,7 @@ module.exports = {
     uploadImgDir: 'static/uploadImg',
     staticDir: 'http://localhost:8080/',
     placeholderURL: 'http://localhost:8080/static/img/placeholder.webp',
+
+    // authenticate
+    JWT_secret_key: 'some_key'
 }

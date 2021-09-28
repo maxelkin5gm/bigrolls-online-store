@@ -2,6 +2,7 @@ const http = require('http')
 const multiparty = require("multiparty")
 const config = require("../../config")
 const fs = require("fs")
+const jwt = require("jsonwebtoken");
 
 
 module.exports = class MExpress {
@@ -15,6 +16,7 @@ module.exports = class MExpress {
 
 
     constructor() {
+        this.use(this._createRedirectFunc)
     }
 
     use(callBack) {
@@ -31,6 +33,20 @@ module.exports = class MExpress {
 
     deleteRouter(method, url) {
         delete this._routers[method][url]
+    }
+
+    static verifyToken(req) {
+        try {
+            const token = req.cookie.token
+            const decoded = jwt.verify(token, config.JWT_secret_key)
+            if (req.socket.remoteAddress === decoded.host) {
+                return decoded
+            } else {
+                return false
+            }
+        } catch (e) {
+            return false
+        }
     }
 
     static async getJSON(req, res, next) {
@@ -84,12 +100,22 @@ module.exports = class MExpress {
         }
     }
 
+
     bindRoutersCategories(db, callBack) {
         db.getAllCategories().then((categories) => {
             categories.forEach((category) => {
                 callBack(category)
             })
         })
+    }
+
+    _createRedirectFunc(req, res, next) {
+        res.redirect = (statusCode, url) => {
+            res.statusCode = String(statusCode)
+            res.setHeader('Location', url)
+            res.end()
+        }
+        next()
     }
 
     routing(req, res) {
@@ -109,7 +135,7 @@ module.exports = class MExpress {
         this._indexMiddleware++
         const index = this._indexMiddleware
         if (middleware[index]) {
-            middleware[index](this.req, this.res, () => this.next() )
+            middleware[index](this.req, this.res, () => this.next())
         } else {
             this.routing(this.req, this.res)
         }
@@ -121,7 +147,7 @@ module.exports = class MExpress {
             this.req = req
             this.res = res
             if (this._middleware.length) {
-                this._middleware[0](req, res, ()=> this.next())
+                this._middleware[0](req, res, () => this.next())
             } else {
                 this.routing(req, res)
             }

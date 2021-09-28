@@ -5,6 +5,7 @@ const fs = require('fs')
 const productsModel = require('./productsModel')
 const categoriesModel = require('./categoriesModel')
 const ordersModel = require('./ordersModel')
+const usersModel = require('./usersModel')
 
 
 module.exports = class DBHelper {
@@ -28,7 +29,7 @@ module.exports = class DBHelper {
     async getOrders() {
         let orders = []
         let ordersData = await ordersModel.find()
-        ordersData.forEach(function (item, i) {
+        ordersData.forEach(function (item) {
             orders.push({
                 id: item.id,
                 client: item.client,
@@ -40,10 +41,40 @@ module.exports = class DBHelper {
         return orders
     }
 
+    getUserByEmail(email) {
+        return usersModel.findOne({email: email})
+    }
+
+    getUserById(idUser) {
+        return usersModel.findOne({_id: idUser})
+    }
+
+    async getOrdersByUser(user) {
+        let orders = []
+        let newOrdersId = []
+        for (let orderId of user.orders) {
+            const order = await ordersModel.findOne({_id: orderId})
+            if (order) {
+                let orderNew = {
+                    id: order.id,
+                    client: order.client,
+                    info: order.info,
+                    basket: Object.fromEntries(order.basket.entries())
+                }
+                orders.push(orderNew)
+                newOrdersId.push(orderId)
+            }
+        }
+        user.orders = newOrdersId
+        await user.save()
+
+        return orders
+    }
+
 
     // create
-    createOrder(dataOrder) {
-        new ordersModel(dataOrder).save()
+    async createOrder(dataOrder) {
+        return await new ordersModel(dataOrder).save()
     }
 
     async createCategory(dataCategory) {
@@ -52,6 +83,10 @@ module.exports = class DBHelper {
 
     async createProduct(dataProduct) {
         await new productsModel(dataProduct).save()
+    }
+
+    async createUser(dataUser) {
+        await new usersModel(dataUser).save()
     }
 
 

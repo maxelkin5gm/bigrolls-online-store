@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ru">
+
+<%- include('partials/head.html'); %>
+
+<body>
+
+<%- include('partials/header.html'); %>
+
+<section class="about-line">
+    <h2>Вход</h2>
+</section>
+
+<section class="main">
+    <form>
+        <h2>Авторизация</h2>
+        <label for="email">Email:
+            <br>
+            <input type="text" id="email" name="email" required>
+        </label>
+        <label for="password">Password:
+            <br>
+            <input type="password" id="password" name="password" required>
+        </label>
+        <button type="submit">Sign in</button>
+    </form>
+</section>
+
+
+
+<script type="module" src="http://localhost:8080/static/js/script.js"></script>
+<script type="module" src="http://localhost:8080/static/js/login-page.js"></script>
+
+</body>
+</html>
