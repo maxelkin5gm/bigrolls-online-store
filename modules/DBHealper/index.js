@@ -9,24 +9,21 @@ const usersModel = require('./usersModel')
 
 
 module.exports = class DBHelper {
-    constructor() {
-        this.connect()
-    }
 
     // get
-    getAllCategories() {
+    static getAllCategories() {
         return categoriesModel.find()
     }
 
-    getAllProducts() {
+    static getAllProducts() {
         return productsModel.find()
     }
 
-    getProducts(category) {
+    static getProducts(category) {
         return productsModel.find({category: category})
     }
 
-    async getOrders() {
+    static async getOrders() {
         let orders = []
         let ordersData = await ordersModel.find()
         ordersData.forEach(function (item) {
@@ -41,15 +38,15 @@ module.exports = class DBHelper {
         return orders
     }
 
-    getUserByEmail(email) {
+    static getUserByEmail(email) {
         return usersModel.findOne({email: email})
     }
 
-    getUserById(idUser) {
+    static getUserById(idUser) {
         return usersModel.findOne({_id: idUser})
     }
 
-    async getOrdersByUser(user) {
+    static async getOrdersByUser(user) {
         let orders = []
         let newOrdersId = []
         for (let orderId of user.orders) {
@@ -73,37 +70,37 @@ module.exports = class DBHelper {
 
 
     // create
-    async createOrder(dataOrder) {
+    static async createOrder(dataOrder) {
         return await new ordersModel(dataOrder).save()
     }
 
-    async createCategory(dataCategory) {
+    static async createCategory(dataCategory) {
         await new categoriesModel(dataCategory).save()
     }
 
-    async createProduct(dataProduct) {
+    static async createProduct(dataProduct) {
         await new productsModel(dataProduct).save()
     }
 
-    async createUser(dataUser) {
+    static async createUser(dataUser) {
         await new usersModel(dataUser).save()
     }
 
 
     // delete
-    async deleteCategory(idCategory) {
+    static async deleteCategory(idCategory) {
         await categoriesModel.findOneAndDelete({_id: idCategory})
     }
 
-    async deleteProduct(idProduct) {
+    static async deleteProduct(idProduct) {
         await productsModel.findOneAndDelete({_id: idProduct})
     }
 
-    async deleteOrder(idOrder) {
+    static async deleteOrder(idOrder) {
         await ordersModel.findOneAndDelete({_id: idOrder})
     }
 
-    deleteImg(imgURL) {
+    static deleteImg(imgURL) {
         let nameImg = imgURL.split('/')
         nameImg = nameImg[nameImg.length - 1]
         if (nameImg === 'placeholder.webp') {
@@ -113,11 +110,12 @@ module.exports = class DBHelper {
     }
 
 
-    connect() {
+    static connect() {
         mongoose.connect(`mongodb+srv://${config.userNameDB}:${config.userPasswordDB}@cluster0.uenld.mongodb.net/${config.nameDB}?retryWrites=true&w=majority`)
             .then(() => {
                 console.log('Mongo connected')
             })
             .catch(err => console.log(err));
     }
+
 }

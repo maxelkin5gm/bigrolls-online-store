@@ -3,7 +3,7 @@ module.exports = {
 
     // database
     nameDB: 'BigRolls',
-    userNameDB: 'DnD',
+    userNameDB: 'admin',
     userPasswordDB: '1234',
 
     // files dir
