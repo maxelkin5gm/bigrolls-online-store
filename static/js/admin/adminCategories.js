@@ -26,8 +26,6 @@ deleteBtns.forEach((btn) => {
             },
             body: JSON.stringify({
                 idCategory: btn.dataset.id,
-                nameCategory: btn.dataset.name,
-                imgURL: btn.dataset.imgurl
             })
         }).then((res) => {
             location.reload()

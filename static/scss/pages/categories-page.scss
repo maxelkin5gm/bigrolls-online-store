@@ -1,0 +1,42 @@
+.categories {
+  width: 75%;
+  padding: 10px 0 10px 10px;
+  border-top: 1px solid #cbcbcb;
+
+  display: flex;
+  align-items: start;
+  flex-wrap: wrap;
+
+  &__item {
+    flex-basis: 33.3333%;
+    padding: 20px;
+    height: 200px;
+  }
+
+  &__link {
+    display: block;
+    height: 100%;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 80%;
+      object-fit: cover;
+    }
+
+    span {
+      display: block;
+      height: 20%;
+      text-align: center;
+      padding: 5px 0;
+      color: black;
+      font-weight: 700;
+    }
+
+    &:hover {
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+  }
+}
+
+

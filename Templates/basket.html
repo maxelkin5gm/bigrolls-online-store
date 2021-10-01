@@ -14,28 +14,13 @@
 <section class="main">
     <div class="container">
         <div class="main__container">
-            <div class="sidebar">
-                <div class="sidebar__categories">
-                    <h2>Категории</h2>
-                    <% categories.forEach(function(category) { %>
-                    <a href="/<%= category.name %>"><%= category.name %></a>
-                    <% })%>
-                </div>
 
-                <div class="sidebar__video">
-                    <iframe src="https://www.youtube.com/embed/SXVInXHZaWE?autoplay=1&mute=1"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
-                </div>
-
-
-            </div>
+            <%- include('partials/sidebar.html', {categories}); %>
 
             <div class="basket-page">
+
                 <table>
                     <tbody>
-
                     <tr>
                         <th></th>
                         <th></th>
@@ -43,17 +28,20 @@
                         <th>Количество</th>
                         <th>Цена</th>
                     </tr>
-
                     </tbody>
                 </table>
+
                 <br>
                 <hr>
                 <br>
+
                 <div class="basket-page__confirm">
                     <p class="basket-page__orderPrice">Сумма заказа: 0 ₽</p>
-                    <a href="/checkout">Подтвердить</a>
+                    <a class="basket-page__confirmBtn double-btn" href="/checkout">Подтвердить</a>
                 </div>
+
             </div>
+
         </div>
     </div>
 

@@ -19,14 +19,23 @@ body {
 }
 
 
+// partials
+@import "blocks/partials";
+
 // blocks
 @import "blocks/header";
 @import "blocks/about-line";
 @import "blocks/main";
+@import "blocks/sidebar";
 @import "blocks/map";
 
-@import "blocks/about-page";
-@import "blocks/basket-page";
-@import "blocks/checkout-page";
-@import "blocks/completed-page";
-@import "blocks/profile-page";
+// pages
+@import "pages/categories-page";
+@import "pages/products-page";
+@import "pages/about-page";
+@import "pages/basket-page";
+@import "pages/checkout-page";
+@import "pages/completed-page";
+@import "pages/profile-page";
+@import "pages/login-page";
+@import "pages/registration-page";

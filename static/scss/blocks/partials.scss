@@ -1,0 +1,20 @@
+.double-btn {
+  transition: 0.4s;
+  cursor: pointer;
+  display: block;
+  text-align: center;
+
+  color: #ed8540;
+  padding: 5px 12px;
+  border: 3px double #ed8540;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  background: transparent;
+
+  &:hover {
+    color: green;
+    border-color: green;
+  }
+}

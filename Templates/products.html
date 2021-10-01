@@ -13,52 +13,33 @@
 <section class="main">
     <div class="container">
         <div class="main__container">
-            <div class="sidebar">
-                <div class="sidebar__categories">
-                    <h2>Категории</h2>
-                    <% categories.forEach(function(category) { %>
-                    <a href="/<%= category.name %>"><%= category.name %></a>
-                    <% })%>
-                </div>
 
-                <div class="sidebar__video">
-                    <iframe src="https://www.youtube.com/embed/SXVInXHZaWE?autoplay=1&mute=1"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
-                </div>
-
-
-            </div>
+            <%- include('partials/sidebar.html', {categories}); %>
 
             <div class="products">
-
                 <% products.forEach(function(product) { %>
                 <div class="products__item">
                     <a class="products__link">
-                        <img src="<%= product.imgURL %>" alt="">
+                        <img src="<%= product.imgURL %>" alt="product">
                         <span class="products__name"><%= product.name %></span>
                     </a>
                     <div class="products__price">
                         <span><%= product.price %></span>
                         <span>₽</span>
                     </div>
-                    <a class="products__basket" data-id="<%= product.id %>" data-name="<%= product.name %>" data-price="<%= product.price %>" data-imgurl="<%= product.imgURL %>">В корзину</a>
+                    <a class="products__basket double-btn" data-id="<%= product.id %>" data-name="<%= product.name %>"
+                       data-price="<%= product.price %>" data-imgurl="<%= product.imgURL %>">В корзину</a>
                 </div>
                 <% })%>
-
             </div>
+
         </div>
     </div>
 
 </section>
 
 
-<section class="map">
-    <div class="container">
-        map
-    </div>
-</section>
+<%- include('partials/map.html'); %>
 
 
 <script type="module" src="http://localhost:8080/static/js/script.js"></script>

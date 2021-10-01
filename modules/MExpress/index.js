@@ -36,6 +36,14 @@ module.exports = class MExpress {
         delete this._routers[method][url]
     }
 
+    bindRoutersCategories(db, callBack) {
+        db.getAllCategories().then((categories) => {
+            categories.forEach((category) => {
+                callBack(category)
+            })
+        })
+    }
+
     static verifyToken(req) {
         try {
             const token = req.cookie.token
@@ -50,12 +58,13 @@ module.exports = class MExpress {
         }
     }
 
-    bindRoutersCategories(db, callBack) {
-        db.getAllCategories().then((categories) => {
-            categories.forEach((category) => {
-                callBack(category)
-            })
-        })
+    static verifyTokenAdmin(req) {
+        const result = this.verifyToken(req)
+        if (result) {
+            if (result.role === 'admin') {
+                return result
+            } else return false
+        } else return false
     }
 
     _createRedirectFunc(req, res, next) {
@@ -67,17 +76,18 @@ module.exports = class MExpress {
         next()
     }
 
-    routing(req, res) {
+    async routing(req, res) {
         try {
             const url = decodeURIComponent(req.url)
             const routeFunc = this._routers[req.method][url]
             if (routeFunc) {
-                routeFunc(req, res)
+                await routeFunc(req, res)
             } else {
                 res.statusCode = 404
                 res.end('<h1>Error 404</h1>')
             }
-        } catch (e) {
+        } catch (err) {
+            console.log(err)
             res.statusCode = 500
             res.end()
         }
@@ -85,7 +95,6 @@ module.exports = class MExpress {
 
     next() {
         const middleware = this._middleware
-
         this._indexMiddleware++
         const index = this._indexMiddleware
         if (middleware[index]) {

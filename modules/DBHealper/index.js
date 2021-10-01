@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 const config = require("../../config")
 const fs = require('fs')
+
 //models
 const productsModel = require('./productsModel')
 const categoriesModel = require('./categoriesModel')
@@ -88,12 +89,32 @@ module.exports = class DBHelper {
 
 
     // delete
-    static async deleteCategory(idCategory) {
-        await categoriesModel.findOneAndDelete({_id: idCategory})
+    static async deleteCategory(idCategory, app) {
+        const category = await categoriesModel.findOne({_id: idCategory})
+
+        try {
+            if (category) {
+                category.delete()
+                app.deleteRouter('GET', `/${category.name}`)
+                DBHelper.deleteImg(category.imgURL)
+            }
+        } catch (err) {
+            console.log(err)
+        }
     }
 
-    static async deleteProduct(idProduct) {
-        await productsModel.findOneAndDelete({_id: idProduct})
+    static async deleteProduct(idProduct, app) {
+        const product = await productsModel.findOne({_id: idProduct})
+
+        try {
+            if (product) {
+                product.delete()
+                app.deleteRouter('GET', `/${product.name}`)
+                DBHelper.deleteImg(product.imgURL)
+            }
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     static async deleteOrder(idOrder) {
@@ -110,12 +131,16 @@ module.exports = class DBHelper {
     }
 
 
+    // connect
     static connect() {
         mongoose.connect(`mongodb+srv://${config.userNameDB}:${config.userPasswordDB}@cluster0.uenld.mongodb.net/${config.nameDB}?retryWrites=true&w=majority`)
             .then(() => {
                 console.log('Mongo connected')
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.log(err)
+                process.exit(1)
+            });
     }
 
 }

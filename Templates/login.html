@@ -12,20 +12,25 @@
 </section>
 
 <section class="main">
-    <form>
-        <h2>Авторизация</h2>
-        <label for="email">Email:
-            <br>
-            <input type="text" id="email" name="email" required>
-        </label>
-        <label for="password">Password:
-            <br>
-            <input type="password" id="password" name="password" required>
-        </label>
-        <button type="submit">Sign in</button>
-    </form>
+    <div class="container">
+        <div class="login-page">
+            <form>
+                <p id="error" style="display: none; color: red;">Ошибка!!!</p>
+                <label for="email">Email:
+                    <br>
+                    <input type="text" id="email" name="email" required>
+                </label>
+                <br>
+                <label for="password">Password:
+                    <br>
+                    <input type="password" id="password" name="password" required>
+                </label>
+                <button class="double-btn" type="submit">Войти</button>
+                <a href="/registration" class="double-btn" >Зарегистрироваться</a>
+            </form>
+        </div>
+    </div>
 </section>
-
 
 
 <script type="module" src="http://localhost:8080/static/js/script.js"></script>

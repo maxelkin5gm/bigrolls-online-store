@@ -16,5 +16,10 @@ form.addEventListener('submit', async (e) => {
 
     if (res.status === 200) {
         location.href = '/admin'
+    } else {
+        error.style.display = 'block'
+        setTimeout(() => {
+            error.style.display = 'none'
+        }, 3000)
     }
 })

@@ -1,0 +1,16 @@
+<div class="sidebar">
+    <div class="sidebar__categories">
+        <h2>Категории</h2>
+        <% categories.forEach(function(category) { %>
+        <a href="/<%= category.name %>"><%= category.name %></a>
+        <% })%>
+    </div>
+
+    <div class="sidebar__video">
+        <iframe src="https://www.youtube.com/embed/SXVInXHZaWE?autoplay=1&mute=1"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+        </iframe>
+    </div>
+</div>

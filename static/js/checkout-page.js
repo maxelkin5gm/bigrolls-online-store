@@ -33,8 +33,15 @@ form.addEventListener('submit', (e) => {
         },
         body: JSON.stringify(order)
     }).then((res) => {
-        localStorage.removeItem('basket')
-        location.href = '/completed'
+        if (res.status === 200) {
+            localStorage.removeItem('basket')
+            location.href = '/completed'
+        } else {
+             error.style.display = 'block'
+            setTimeout(() => {
+                error.style.display = 'none'
+            }, 3000)
+        }
     })
 })
 

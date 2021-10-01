@@ -1,0 +1,22 @@
+.registration-page {
+  text-align: center;
+  color: black;
+
+  form {
+    font-size: 20px;
+
+    input {
+      font-size: 16px;
+      padding: 6px 0 4px 10px;
+      border: 1px solid #cecece;
+      background: #F6F6F6;
+      border-radius: 8px;
+      margin: 5px
+    }
+
+    button {
+      margin: 10px auto;
+      font-size: 20px;
+    }
+  }
+}

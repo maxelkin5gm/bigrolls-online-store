@@ -1,0 +1,50 @@
+.products {
+  width: 75%;
+  padding: 10px 0 10px 10px;
+  border-top: 1px solid #cbcbcb;
+  color: black;
+
+  display: flex;
+  align-items: start;
+  flex-wrap: wrap;
+
+
+  &__item {
+    flex-basis: 33.33333%;
+    padding: 20px;
+    height: 300px;
+  }
+
+  &__link {
+    display: block;
+    height: 70%;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 80%;
+      object-fit: cover;
+    }
+
+    span {
+      display: block;
+      text-align: center;
+      font-weight: 700;
+      padding: 5px 0;
+    }
+  }
+
+
+  &__price {
+    font-size: 20px;
+    color: green;
+    font-weight: 300;
+    text-align: center;
+    padding-bottom: 10px;
+  }
+
+  &__basket {
+    width: 70%;
+    margin: 0 auto;
+  }
+}

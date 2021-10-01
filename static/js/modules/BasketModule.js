@@ -16,12 +16,20 @@ export default class BasketModule {
         }
     }
 
+    static isEmpty() {
+        return !this.basket || Object.keys(this.basket).length === 0;
+    }
+
     static bindAddBtn(selectorBtn) {
         const buttons = document.querySelectorAll(selectorBtn)
         buttons.forEach((btn) => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault()
                 this.add(btn)
+                btn.innerText = 'Добавлено'
+                setTimeout(() => {
+                    btn.innerText = 'В корзину'
+                }, 3000)
                 BasketModule.updateIndicator()
             })
         })

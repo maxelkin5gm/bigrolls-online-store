@@ -1,0 +1,66 @@
+.profile-page {
+  width: 75%;
+  padding: 10px 0 10px 10px;
+  color: black;
+
+  hr {
+    border: none;
+    color: #cbcbcb;
+    background-color: #cbcbcb;
+    height: 1px;
+  }
+
+  &__client-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+
+    p {
+      padding: 10px;
+    }
+  }
+
+  &__history {
+
+  }
+}
+
+.history {
+
+  &__item {
+    margin-bottom: 20px;
+
+    p {
+      padding: 10px;
+      font-weight: bold;
+    }
+
+    span {
+      font-size: 20px;
+    }
+
+    table {
+      background: wheat;
+      border-spacing: 0;
+      border-collapse: collapse;
+      width: 100%;
+      border: 1px solid black;
+
+      th, td {
+        text-align: start;
+        padding: 10px;
+      }
+
+      th {
+        background: #ed8540;
+      }
+      tr:nth-child(even) {
+        background: #f6e5c7;
+      }
+      th:nth-child(even) {
+        background: #ff9911;
+      }
+    }
+  }
+}

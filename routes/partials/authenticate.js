@@ -39,11 +39,14 @@ module.exports = (app) => {
                 CookieHelper.setCookie('token', token)
                 CookieHelper.sendCookie(res)
                 res.end()
-                return
+            } else {
+                res.statusCode = 401
+                res.end()
             }
+        } else {
+            res.statusCode = 401
+            res.end()
         }
-        res.statusCode = 401
-        res.end()
     })
     app.post('/logout', async (req, res) => {
         CookieHelper.deleteCookie('token')
@@ -51,8 +54,22 @@ module.exports = (app) => {
         res.end()
     })
     app.get('/registration', async (req, res) => {
-        const html = await templateEngine.render('./Templates/registration.html', {})
-        res.end(html)
+        const result = MExpress.verifyToken(req)
+        if (result) {
+            switch (result.role) {
+                case 'admin':
+                    res.redirect(302, '/admin')
+                    break
+                case 'client':
+                    res.redirect(302, '/')
+                    break
+                default:
+                    res.redirect(302, '/')
+            }
+        } else {
+            const html = await templateEngine.render('./Templates/registration.html', {})
+            res.end(html)
+        }
     })
     app.post('/registration', async (req, res) => {
         req.json.role = 'client'

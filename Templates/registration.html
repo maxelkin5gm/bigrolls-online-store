@@ -8,24 +8,28 @@
 <%- include('partials/header.html'); %>
 
 <section class="about-line">
-    <h2>Вход</h2>
+    <h2>Регистрация</h2>
 </section>
 
 <section class="main">
-    <form>
-        <h2>Регистрация</h2>
-        <label for="email">Email:
-            <br>
-            <input type="text" id="email" name="email" required>
-        </label>
-        <label for="password">Password:
-            <br>
-            <input type="password" id="password" name="password" required>
-        </label>
-        <button type="submit">Зарегистрироваться</button>
-    </form>
+    <div class="container">
+        <div class="registration-page">
+            <form>
+                <p id="error" style="display: none; color: red;">Ошибка!!!</p>
+                <label for="email">Email:
+                    <br>
+                    <input type="text" id="email" name="email" required>
+                </label>
+                <br>
+                <label for="password">Password:
+                    <br>
+                    <input type="password" id="password" name="password" required>
+                </label>
+                <button class="double-btn" type="submit">Зарегистрироваться</button>
+            </form>
+        </div>
+    </div>
 </section>
-
 
 
 <script type="module" src="http://localhost:8080/static/js/script.js"></script>
