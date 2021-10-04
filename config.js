@@ -2,7 +2,7 @@ module.exports = {
     PORT: process.env.PORT || 5000,
 
     // database
-    nameDB: 'BigRolls',
+    nameDB: 'BigRollsDev',
     userNameDB: 'admin',
     userPasswordDB: '1234',
 

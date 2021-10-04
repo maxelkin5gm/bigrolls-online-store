@@ -7,10 +7,10 @@
 }
 
 .order {
-  margin: 20px;
+  margin-top: 20px;
   padding: 10px;
   border: 1px solid #9f9f9f;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
   &__header {
     display: flex;
@@ -44,9 +44,11 @@
   &__client {
     padding-left: 10px;
     font-size: 18px;
+    overflow: auto;
   }
 
-  &__items {
+  &__item {
+    overflow: auto;
 
     table {
       background: wheat;
@@ -63,12 +65,30 @@
       th {
         background: #ed8540;
       }
+
       tr:nth-child(even) {
         background: #f6e5c7;
       }
+
       th:nth-child(even) {
         background: #ff9911;
       }
+    }
+  }
+
+  @media (max-width: 600px) {
+    h2 {
+      font-size: 20px;
+      text-align: center;
+    }
+
+    a {
+      display: block;
+      margin: 5px;
+    }
+
+    &__header {
+      flex-direction: column;
     }
   }
 }

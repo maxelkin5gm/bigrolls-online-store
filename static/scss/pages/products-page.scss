@@ -12,7 +12,14 @@
   &__item {
     flex-basis: 33.33333%;
     padding: 20px;
-    height: 300px;
+    height: 320px;
+
+    @media (max-width: 800px) {
+      flex-basis: 50%;
+    }
+    @media (max-width: 450px) {
+      flex-basis: 100%;
+    }
   }
 
   &__link {
@@ -46,5 +53,10 @@
   &__basket {
     width: 70%;
     margin: 0 auto;
+  }
+
+  @media (max-width: 700px) {
+    width: 100%;
+    border: none;
   }
 }

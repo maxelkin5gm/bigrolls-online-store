@@ -1,5 +1,5 @@
 .add-category {
-  margin: 20px;
+  margin: 20px 0;
 
   form {
     text-align: center;
@@ -18,6 +18,10 @@
       border: 1px solid #cecece;
       background: #F6F6f6;
       border-radius: 8px;
+
+      @media (max-width: 450px) {
+        width: 100%;
+      }
     }
 
     button {
@@ -64,6 +68,7 @@
   padding: 10px;
   margin: 10px 0;
   border-radius: 10px;
+  overflow: auto;
 
   &__info{
     display: flex;
@@ -72,6 +77,11 @@
     p {
       padding: 10px;
       font-size: 20px;
+    }
+
+    @media (max-width: 500px) {
+      width: 100%;
+      flex-direction: column;
     }
   }
 
@@ -96,5 +106,11 @@
       color: yellowgreen;
       border-color: yellowgreen;
     }
+  }
+
+  @media (max-width: 500px) {
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
   }
 }

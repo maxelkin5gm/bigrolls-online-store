@@ -21,8 +21,19 @@
     }
   }
 
-  &__history {
+  @media (max-width: 700px) {
+    width: 100%;
+    border: none;
+    padding: 0;
 
+    &__client-info {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    button {
+      margin: 10px;
+    }
   }
 }
 
@@ -30,6 +41,9 @@
 
   &__item {
     margin-bottom: 20px;
+    min-width: 279px;
+    width: 100%;
+    overflow: auto;
 
     p {
       padding: 10px;

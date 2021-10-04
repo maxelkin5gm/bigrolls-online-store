@@ -1,5 +1,5 @@
 .add-product {
-  margin: 20px;
+  margin: 20px 0;
 
   form {
     text-align: center;
@@ -18,6 +18,10 @@
       border: 1px solid #cecece;
       background: #F6F6f6;
       border-radius: 8px;
+
+      @media (max-width: 450px) {
+        width: 100%;
+      }
     }
 
     button {
@@ -63,6 +67,12 @@
   padding: 10px;
   margin: 10px 0;
   border-radius: 10px;
+  overflow: auto;
+
+  @media (max-width: 850px) {
+    width: 100%;
+    flex-direction: column;
+  }
 
   &__info{
     display: flex;
@@ -71,6 +81,14 @@
     p {
       padding: 0 30px;
       font-size: 20px;
+    }
+
+    @media (max-width: 700px) {
+      text-align: center;
+      flex-direction: column;
+      p {
+        border-bottom: 1px solid black;
+      }
     }
   }
 

@@ -27,6 +27,11 @@
     color: green;
   }
 
+  &__table {
+    min-width: 281px;
+    width: 100%;
+    overflow: auto;
+  }
 
   table {
     width: 98%;
@@ -61,6 +66,8 @@
   &__confirm {
     display: flex;
     justify-content: space-around;
+    align-items: center;
+    padding-bottom: 20px;
 
     p {
       font-size: 30px;
@@ -71,6 +78,20 @@
     }
   }
 
+  @media (max-width: 700px) {
+    width: 100%;
+    border: none;
+
+    table, hr {
+      width: 100%;
+    }
+
+    &__confirm {
+      p, a {
+        font-size: 16px;
+      }
+    }
+  }
 }
 
 

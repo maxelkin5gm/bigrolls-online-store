@@ -35,6 +35,12 @@ body {
   font-weight: bold;
   color: white;
 }
+@media (max-width: 400px) {
+  .header a {
+    font-size: 16px;
+    margin: 5px;
+  }
+}
 
 .orders__container {
   display: flex;
@@ -42,7 +48,7 @@ body {
 }
 
 .order {
-  margin: 20px;
+  margin-top: 20px;
   padding: 10px;
   border: 1px solid #9f9f9f;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -74,30 +80,47 @@ body {
 .order__client {
   padding-left: 10px;
   font-size: 18px;
+  overflow: auto;
 }
-.order__items table {
+.order__item {
+  overflow: auto;
+}
+.order__item table {
   background: wheat;
   border-spacing: 0;
   border-collapse: collapse;
   width: 100%;
   border: 1px solid black;
 }
-.order__items table th, .order__items table td {
+.order__item table th, .order__item table td {
   text-align: start;
   padding: 10px;
 }
-.order__items table th {
+.order__item table th {
   background: #ed8540;
 }
-.order__items table tr:nth-child(even) {
+.order__item table tr:nth-child(even) {
   background: #f6e5c7;
 }
-.order__items table th:nth-child(even) {
+.order__item table th:nth-child(even) {
   background: #ff9911;
+}
+@media (max-width: 600px) {
+  .order h2 {
+    font-size: 20px;
+    text-align: center;
+  }
+  .order a {
+    display: block;
+    margin: 5px;
+  }
+  .order__header {
+    flex-direction: column;
+  }
 }
 
 .add-product {
-  margin: 20px;
+  margin: 20px 0;
 }
 .add-product form {
   text-align: center;
@@ -115,6 +138,11 @@ body {
   border: 1px solid #cecece;
   background: #F6F6f6;
   border-radius: 8px;
+}
+@media (max-width: 450px) {
+  .add-product form input, .add-product form select {
+    width: 100%;
+  }
 }
 .add-product form button {
   margin-top: 5px;
@@ -151,6 +179,13 @@ body {
   padding: 10px;
   margin: 10px 0;
   border-radius: 10px;
+  overflow: auto;
+}
+@media (max-width: 850px) {
+  .product {
+    width: 100%;
+    flex-direction: column;
+  }
 }
 .product__info {
   display: flex;
@@ -159,6 +194,15 @@ body {
 .product__info p {
   padding: 0 30px;
   font-size: 20px;
+}
+@media (max-width: 700px) {
+  .product__info {
+    text-align: center;
+    flex-direction: column;
+  }
+  .product__info p {
+    border-bottom: 1px solid black;
+  }
 }
 .product img {
   max-width: 150px;
@@ -182,7 +226,7 @@ body {
 }
 
 .add-category {
-  margin: 20px;
+  margin: 20px 0;
 }
 .add-category form {
   text-align: center;
@@ -200,6 +244,11 @@ body {
   border: 1px solid #cecece;
   background: #F6F6f6;
   border-radius: 8px;
+}
+@media (max-width: 450px) {
+  .add-category form input {
+    width: 100%;
+  }
 }
 .add-category form button {
   margin-top: 5px;
@@ -236,6 +285,7 @@ body {
   padding: 10px;
   margin: 10px 0;
   border-radius: 10px;
+  overflow: auto;
 }
 .category__info {
   display: flex;
@@ -244,6 +294,12 @@ body {
 .category__info p {
   padding: 10px;
   font-size: 20px;
+}
+@media (max-width: 500px) {
+  .category__info {
+    width: 100%;
+    flex-direction: column;
+  }
 }
 .category img {
   max-width: 150px;
@@ -264,6 +320,13 @@ body {
 .category a:hover {
   color: yellowgreen;
   border-color: yellowgreen;
+}
+@media (max-width: 500px) {
+  .category {
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
 /*# sourceMappingURL=admin.css.map */
