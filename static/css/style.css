@@ -237,6 +237,19 @@ body {
   color: black;
 }
 
+.sort {
+  padding: 20px 0 0 0;
+  text-align: end;
+  color: black;
+}
+.sort select {
+  font-size: 16px;
+  padding: 6px 0 4px 10px;
+  border: 1px solid #cecece;
+  background: #F6F6f6;
+  border-radius: 8px;
+}
+
 .categories {
   width: 75%;
   padding: 10px 0 10px 10px;

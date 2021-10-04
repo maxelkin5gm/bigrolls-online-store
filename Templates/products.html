@@ -10,6 +10,35 @@
 <%- include('partials/about-line.html'); %>
 
 
+<section class="sort">
+    <div class="container">
+        <label>Сортировка
+            <select id="sort" name="sort">
+
+                <% if (sort == 0) { %>
+                <option selected="selected">По умолчанию</option>
+                <% } else {%>
+                <option>По умолчанию</option>
+                <% } %>
+
+                <% if (sort == 1) { %>
+                <option selected="selected">По убыванию</option>
+                <% } else {%>
+                <option>По убыванию</option>
+                <% } %>
+
+                <% if (sort == 2) { %>
+                <option selected="selected">По возрастанию</option>
+                <% } else {%>
+                <option>По возрастанию</option>
+                <% } %>
+
+            </select>
+        </label>
+    </div>
+</section>
+
+
 <section class="main">
     <div class="container">
         <div class="main__container">

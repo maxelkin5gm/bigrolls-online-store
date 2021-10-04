@@ -1,7 +1,7 @@
 const multiparty = require("multiparty");
-const config = require("../../config");
+const config = require("../../../config");
 const fs = require("fs");
-const CookieHelper = require("../CookieHelper");
+const CookieHelper = require("../../CookieHelper");
 
 
 module.exports = {

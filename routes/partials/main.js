@@ -43,7 +43,34 @@ module.exports = (app) => {
         app.get(`/${category.name}`, async (req, res) => {
             const categories = await DBHelper.getAllCategories()
             const products = await DBHelper.getProducts(category.name)
-            const html = await templateEngine.render('./Templates/products.html', {categories, products})
+            let sort = 0;
+            switch (req.url_parts.searchParams.get('sort')) {
+                case '1':
+                    sort = 1
+                    products.sort(function (a, b) {
+                        if (Number(a.price) < Number(b.price)) {
+                            return 1;
+                        }
+                        if (Number(a.price) > Number(b.price)) {
+                            return -1;
+                        }
+                        return 0;
+                    });
+                    break
+                case '2':
+                    sort = 2
+                    products.sort(function (a, b) {
+                        if (Number(a.price) > Number(b.price)) {
+                            return 1;
+                        }
+                        if (Number(a.price) < Number(b.price)) {
+                            return -1;
+                        }
+                        return 0;
+                    });
+                    break
+            }
+            const html = await templateEngine.render('./Templates/products.html', {categories, products, sort})
             res.end(html)
         })
     })

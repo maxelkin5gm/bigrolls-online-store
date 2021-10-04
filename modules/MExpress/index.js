@@ -1,7 +1,9 @@
 const http = require('http')
 const config = require("../../config")
 const jwt = require("jsonwebtoken")
-const middlewares = require("./middlewares")
+const middlewares = require("./middlewares/middlewares")
+const Run = require("./Run");
+const url = require("url");
 
 
 module.exports = class MExpress {
@@ -11,17 +13,15 @@ module.exports = class MExpress {
         GET: {},
         POST: {}
     }
-
-    _middleware = []
-    _indexMiddleware = 0
-
+    _middlewares = []
 
     constructor() {
         this.use(this._createRedirectFunc)
+        this.use(this._createUrlParseFunc)
     }
 
     use(callBack) {
-        this._middleware.push(callBack)
+        this._middlewares.push(callBack)
     }
 
     get(url, callBack) {
@@ -76,46 +76,19 @@ module.exports = class MExpress {
         next()
     }
 
-    async routing(req, res) {
-        try {
-            const url = decodeURIComponent(req.url)
-            const routeFunc = this._routers[req.method][url]
-            if (routeFunc) {
-                await routeFunc(req, res)
-            } else {
-                res.statusCode = 404
-                res.end('<h1>Error 404</h1>')
-            }
-        } catch (err) {
-            console.log(err)
-            res.statusCode = 500
-            res.end()
-        }
-    }
+    _createUrlParseFunc(req, res, next) {
+        const fullUrl = req.protocol + '://' + req.headers.host + req.url;
+        const url_parts = new URL(fullUrl)
 
-    next() {
-        const middleware = this._middleware
-        this._indexMiddleware++
-        const index = this._indexMiddleware
-        if (middleware[index]) {
-            middleware[index](this.req, this.res, () => this.next())
-        } else {
-            this.routing(this.req, this.res)
-        }
+        req.url = url_parts.pathname
+        req.url_parts = url_parts
+        next()
     }
 
     listen(PORT, callBack) {
         http.createServer(async (req, res) => {
-            this._indexMiddleware = 0
-            this.req = req
-            this.res = res
-            if (this._middleware.length) {
-                this._middleware[0](req, res, () => this.next())
-            } else {
-                this.routing(req, res)
-            }
+            new Run(req, res, this._routers, this._middlewares)
         }).listen(PORT)
-
         callBack()
     }
 }
