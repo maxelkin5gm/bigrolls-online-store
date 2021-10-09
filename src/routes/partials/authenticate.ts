@@ -1,13 +1,13 @@
-const jwt = require("jsonwebtoken")
+import jwt from "jsonwebtoken"
 
-const MExpress = require("../../modules/MExpress")
-const templateEngine = require("../../modules/TemplateEngine")
-const DBHelper = require("../../modules/DBHealper")
-const CookieHelper = require("../../modules/CookieHelper")
-const config = require("../../config")
+import MExpress from "../../modules/MExpress"
+import templateEngine from "../../modules/TemplateEngine"
+import DBHelper from "../../modules/DBHealper"
+import CookieHelper from "../../modules/CookieHelper"
+import config from "../../config"
 
 
-module.exports = (app) => {
+export default (app: MExpress) => {
     app.get('/login', async (req, res) => {
         const result = MExpress.verifyToken(req)
         if (result) {
@@ -22,12 +22,12 @@ module.exports = (app) => {
                     res.redirect(302, '/')
             }
         } else {
-            const html = await templateEngine.render('./Templates/login.html', {})
+            const html = await templateEngine.render('./Views/login.html', {})
             res.end(html)
         }
     })
     app.post('/login', async (req, res) => {
-        const user = await DBHelper.getUserByEmail(req.json.email)
+        const user: any = await DBHelper.getUserByEmail(req.json.email)
         if (user) {
             if (user.password === req.json.password) {
                 const tokenData = {
@@ -67,7 +67,7 @@ module.exports = (app) => {
                     res.redirect(302, '/')
             }
         } else {
-            const html = await templateEngine.render('./Templates/registration.html', {})
+            const html = await templateEngine.render('./Views/registration.html', {})
             res.end(html)
         }
     })

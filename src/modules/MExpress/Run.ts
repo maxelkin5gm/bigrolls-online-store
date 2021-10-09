@@ -1,16 +1,19 @@
-module.exports = class Run {
+import {middleware, Request, Response, routers} from "./Types/Types";
+
+
+export default class Run {
     _indexMiddleware = 0
 
-    constructor(req, res, routers, middlewares) {
-        this._req = req;
-        this._res = res;
-        this._routers = routers;
-        this._middlewares = middlewares;
-
+    constructor(
+        private _req: Request,
+        private _res: Response,
+        private _routers: routers,
+        private _middlewares: middleware[]
+    ) {
         this.run()
     }
 
-    async run() {
+    run() {
         if (this._middlewares.length) {
             this._middlewares[0](this._req, this._res, () => this.next())
         } else {
@@ -18,10 +21,11 @@ module.exports = class Run {
         }
     }
 
-    async routing(req, res) {
+    async routing(req: Request, res: Response) {
         try {
-            const url = decodeURIComponent(req.url)
-            const routeFunc = this._routers[req.method][url]
+            const url = decodeURIComponent(req.url as string)
+            const method = req.method as string
+            const routeFunc = this._routers[method][url]
             if (routeFunc) {
                 await routeFunc(req, res)
             } else {
@@ -36,12 +40,13 @@ module.exports = class Run {
     }
 
     next() {
-        const middleware = this._middlewares
         this._indexMiddleware++
+
+        const middlewares = this._middlewares
         const index = this._indexMiddleware
 
-        if (middleware[index]) {
-            middleware[index](this._req, this._res, () => this.next())
+        if (middlewares[index]) {
+            middlewares[index](this._req, this._res, () => this.next())
         } else {
             this.routing(this._req, this._res)
         }

@@ -1,16 +1,16 @@
-const MExpress = require("../../modules/MExpress")
-const templateEngine = require("../../modules/TemplateEngine")
-const DBHelper = require("../../modules/DBHealper")
+import MExpress from "../../modules/MExpress"
+import templateEngine from "../../modules/TemplateEngine"
+import DBHelper from "../../modules/DBHealper"
 
 
-module.exports = (app) => {
+export default (app: MExpress) => {
     app.post('/api/create_order', async (req, res) => {
         const order = await DBHelper.createOrder(req.json)
         try {
             const result = MExpress.verifyToken(req)
             if (result) {
-                const user = await DBHelper.getUserById(result.id)
-                if (user) {
+                const user: any = await DBHelper.getUserById(result.id)
+                if (user && order) {
                     user.orders.push(order.id)
                     user.save()
                 }
@@ -37,7 +37,7 @@ module.exports = (app) => {
             app.get(`/${formData.name}`, async (req, res) => {
                 const categories = await DBHelper.getAllCategories()
                 const products = await DBHelper.getProducts(formData.name)
-                const html = await templateEngine.render('./Templates/products.html', {categories, products})
+                const html = await templateEngine.render('./Views/products.html', {categories, products})
                 res.end(html)
             })
         } else {

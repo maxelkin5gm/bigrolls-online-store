@@ -1,12 +1,14 @@
-const multiparty = require("multiparty");
-const config = require("../../../config");
-const fs = require("fs");
-const CookieHelper = require("../../CookieHelper");
+import {nextFunction, Request, Response} from "../Types/Types";
+
+import multiparty from "multiparty"
+import config from "../../../config"
+import fs from "fs"
+import CookieHelper from "../../CookieHelper"
 
 
-module.exports = {
+export default {
 
-    getJSON: async function (req, res, next) {
+    getJSON: async function (req: Request, res: Response, next: nextFunction) {
         try {
             if (req.headers['content-type'] !== 'application/json') {
                 next()
@@ -22,12 +24,11 @@ module.exports = {
         } catch (err) {
             res.statusCode = 400
             res.end()
-            console.log(err)
         }
     },
 
 
-    getFormData: function (req, res, next) {
+    getFormData: function (req: Request, res: Response, next: nextFunction) {
         if (!req.headers['content-type']) {
             next()
             return
@@ -43,10 +44,9 @@ module.exports = {
                 if (err) {
                     res.statusCode = 400
                     res.end()
-                    console.log(err)
                     return
                 }
-                const formData = {}
+                const formData: any = {}
                 for (let field in fields) {
                     formData[field] = fields[field][0]
                 }
@@ -67,7 +67,7 @@ module.exports = {
     },
 
 
-    getCookie: function (req, res, next) {
+    getCookie: function (req: Request, res: Response, next: nextFunction) {
         CookieHelper.getCookie(req, res, next)
     },
 
