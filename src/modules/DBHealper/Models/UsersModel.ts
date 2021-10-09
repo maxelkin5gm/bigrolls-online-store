@@ -1,7 +1,14 @@
 import mongoose from "mongoose"
 
 
-const usersSchema = new mongoose.Schema({
+interface IUser {
+    email: string,
+    password: string,
+    role: string,
+    orders?: mongoose.Types.ObjectId[]
+}
+
+const usersSchema = new mongoose.Schema<IUser>({
     email: {
         type: String,
         required: true,
@@ -26,4 +33,6 @@ const usersSchema = new mongoose.Schema({
 
 })
 
-export default mongoose.model('users', usersSchema)
+export type UserModelType = (mongoose.Document<any, any, IUser> & IUser & { _id: mongoose.Types.ObjectId })
+
+export default mongoose.model<IUser>('users', usersSchema)

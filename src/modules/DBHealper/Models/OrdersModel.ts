@@ -1,7 +1,24 @@
 import mongoose from "mongoose"
 
 
-const ordersSchema = new mongoose.Schema({
+interface IOrder {
+    client: {
+        name?: string,
+        tel: string,
+        street?: string,
+        home?: string,
+        apartment?: string
+    },
+    info: {
+        delivery?: string,
+        additionalInfo?: string,
+        totalPrice: number,
+        date: Date
+    },
+    basket: any
+}
+
+const ordersSchema = new mongoose.Schema<IOrder>({
     client: {
         name: {
             type: String
@@ -65,4 +82,6 @@ const ordersSchema = new mongoose.Schema({
 
 })
 
-export default mongoose.model('orders', ordersSchema)
+export type OrderModelType = (mongoose.Document<any, any, IOrder> & IOrder & {_id: mongoose.Types.ObjectId})
+
+export default mongoose.model<IOrder>('orders', ordersSchema)

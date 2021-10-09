@@ -27,7 +27,7 @@ export default (app: MExpress) => {
         }
     })
     app.post('/login', async (req, res) => {
-        const user: any = await DBHelper.getUserByEmail(req.json.email)
+        const user = await DBHelper.getUserByEmail(req.json.email)
         if (user) {
             if (user.password === req.json.password) {
                 const tokenData = {

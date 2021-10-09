@@ -4,25 +4,25 @@ import fs from "fs"
 import MExpress from "../MExpress";
 
 //models
-import ProductsModel from './ProductsModel'
-import CategoriesModel from './CategoriesModel'
-import OrdersModel from './OrdersModel'
-import UsersModel from './UsersModel'
+import ProductsModel, {ProductModelType} from './Models/ProductsModel'
+import CategoriesModel, {CategoryModelType} from './Models/CategoriesModel'
+import OrdersModel, {OrderModelType} from './Models/OrdersModel'
+import UsersModel, {UserModelType} from './Models/UsersModel'
 
 
 export default class DBHelper {
 
     // get
-    static getAllCategories() {
-        return CategoriesModel.find()
+    static async getAllCategories() {
+        return await CategoriesModel.find() as CategoryModelType[]
     }
 
-    static getAllProducts() {
-        return ProductsModel.find()
+    static async getAllProducts() {
+        return await ProductsModel.find() as ProductModelType[]
     }
 
-    static getProducts(categoryName: string) {
-        return ProductsModel.find({category: categoryName})
+    static async getProducts(categoryName: string) {
+        return await ProductsModel.find({category: categoryName}) as ProductModelType[]
     }
 
     static async getOrders() {
@@ -32,8 +32,8 @@ export default class DBHelper {
             info: { [k: string]: any },
             basket: { [k: string]: any }
         }[] = []
-        let ordersData = await OrdersModel.find()
-        ordersData.forEach(function (item: any) {
+        let ordersData = await OrdersModel.find() as OrderModelType[]
+        ordersData.forEach(function (item) {
             orders.push({
                 id: item.id,
                 client: item.client,
@@ -44,19 +44,24 @@ export default class DBHelper {
         return orders
     }
 
-    static getUserByEmail(email: string) {
-        return UsersModel.findOne({email: email})
+    static async getUserByEmail(email: string) {
+        return await UsersModel.findOne({email: email}) as UserModelType
     }
 
-    static getUserById(idUser: string) {
-        return UsersModel.findOne({_id: idUser})
+    static async getUserById(idUser: string) {
+        return await UsersModel.findOne({_id: idUser}) as UserModelType
     }
 
-    static async getOrdersByUser(user: any) {
-        let orders = []
-        let newOrdersId = []
-        for (let orderId of user.orders) {
-            const order: any = await OrdersModel.findOne({_id: orderId})
+    static async getOrdersByUser(user: UserModelType) {
+        let orders: {
+            id: string,
+            client: { [k: string]: string },
+            info: { [k: string]: any },
+            basket: { [k: string]: any }
+        }[] = []
+        let newOrdersId: mongoose.Types.ObjectId[] = []
+        for (let orderId of user.orders as []) {
+            const order = await OrdersModel.findOne({_id: orderId}) as OrderModelType
             if (order) {
                 let orderNew = {
                     id: order.id,
@@ -81,15 +86,15 @@ export default class DBHelper {
     }
 
     static async createCategory(dataCategory: any) {
-        await new CategoriesModel(dataCategory).save()
+        return await new CategoriesModel(dataCategory).save() as CategoryModelType
     }
 
     static async createProduct(dataProduct: any) {
-        await new ProductsModel(dataProduct).save()
+        return await new ProductsModel(dataProduct).save() as ProductModelType
     }
 
     static async createUser(dataUser: any) {
-        await new UsersModel(dataUser).save()
+        return await new UsersModel(dataUser).save() as UserModelType
     }
 
 
@@ -101,7 +106,7 @@ export default class DBHelper {
             if (category) {
                 category.delete()
                 app.deleteRouter('GET', `/${category.name}`)
-                DBHelper.deleteImg(category.imgURL)
+                DBHelper.deleteImg(category.imgURL as string)
             }
         } catch (err) {
             console.log(err)
@@ -110,12 +115,11 @@ export default class DBHelper {
 
     static async deleteProduct(idProduct: string, app: MExpress) {
         const product = await ProductsModel.findOne({_id: idProduct})
-
         try {
             if (product) {
                 product.delete()
                 app.deleteRouter('GET', `/${product.name}`)
-                DBHelper.deleteImg(product.imgURL)
+                DBHelper.deleteImg(product.imgURL as string)
             }
         } catch (err) {
             console.log(err)
