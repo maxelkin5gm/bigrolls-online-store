@@ -1,6 +1,7 @@
 import MExpress from "../../modules/MExpress"
 import templateEngine from "../../modules/TemplateEngine"
 import DBHelper from "../../modules/DBHealper"
+import CookieHelper from "../../modules/CookieHelper";
 
 
 export default (app: MExpress) => {
@@ -33,10 +34,16 @@ export default (app: MExpress) => {
         const result = MExpress.verifyToken(req)
         if (result) {
             const user = await DBHelper.getUserById(result.id)
-            const orders = await DBHelper.getOrdersByUser(user)
-            const categories = await DBHelper.getAllCategories()
-            const html = await templateEngine.render('./Views/profile.html', {categories, user, orders})
-            res.end(html)
-        } else res.redirect(302, '/login')
+            if (user) {
+                const orders = await DBHelper.getOrdersByUser(user)
+                const categories = await DBHelper.getAllCategories()
+                const html = await templateEngine.render('./Views/profile.html', {categories, user, orders})
+                res.end(html)
+                return
+            }
+        }
+        CookieHelper.deleteCookie('token')
+        CookieHelper.sendCookie(res)
+        res.redirect(302, '/login')
     })
 }

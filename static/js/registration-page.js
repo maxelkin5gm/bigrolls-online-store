@@ -15,7 +15,7 @@ form.addEventListener('submit', async (e) => {
     })
 
     if (res.status === 200) {
-        location.href = '/'
+        location.href = '/profile'
     } else {
         error.style.display = 'block'
         setTimeout(() => {

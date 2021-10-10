@@ -16,7 +16,7 @@ export default (app: MExpress) => {
                     res.redirect(302, '/admin')
                     break
                 case 'client':
-                    res.redirect(302, '/')
+                    res.redirect(302, '/profile')
                     break
                 default:
                     res.redirect(302, '/')
@@ -61,7 +61,7 @@ export default (app: MExpress) => {
                     res.redirect(302, '/admin')
                     break
                 case 'client':
-                    res.redirect(302, '/')
+                    res.redirect(302, '/profile')
                     break
                 default:
                     res.redirect(302, '/')
