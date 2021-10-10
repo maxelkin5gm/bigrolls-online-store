@@ -2,10 +2,10 @@
   "name": "onlinestore",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "scripts": {
-    "static": "http-server ./ -c-1 --cors",
-    "start": "tsc && node dist/index"
+    "start": "tsc && node dist/index",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
