@@ -29,7 +29,6 @@
     "@types/jsonwebtoken": "^8.5.5",
     "@types/multiparty": "^0.0.33",
     "@types/node": "^16.10.3",
-    "http-server": "^13.0.2",
     "typescript": "^4.4.3"
   }
 }
