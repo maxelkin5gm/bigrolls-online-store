@@ -39,7 +39,7 @@ body {
 }
 
 .header {
-  background: url("http://localhost:8080/static/img/header/header_backround.jpg") top no-repeat, rgba(0, 0, 0, 0.6);
+  background: url("/static/img/header/header_backround.jpg") top no-repeat, rgba(0, 0, 0, 0.6);
   background-blend-mode: multiply;
   background-size: cover;
   padding: 50px 0;

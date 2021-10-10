@@ -136,7 +136,7 @@ export default class DBHelper {
         if (nameImg === 'placeholder.webp') {
             return
         }
-        fs.unlinkSync(imgURL)
+        fs.unlinkSync("." + imgURL)
     }
 
 

@@ -8,6 +8,7 @@ import middlewares from "./middlewares/middlewares"
 import Run from "./Run"
 import DBHelper from "../DBHealper"
 import templateEngine from "../TemplateEngine"
+import {CategoryModelType} from "../DBHealper/Models/CategoriesModel";
 
 
 export default class MExpress {
@@ -44,40 +45,44 @@ export default class MExpress {
     bindRoutersCategories() {
         DBHelper.getAllCategories().then((categories) => {
             categories.forEach((category) => {
-                this.get(`/${category.name}`, async (req, res) => {
-                    const categories = await DBHelper.getAllCategories()
-                    const products = await DBHelper.getProducts(category.name)
-                    let sort = 0;
-                    switch (req.url_parts.searchParams.get('sort')) {
-                        case '1':
-                            sort = 1
-                            products.sort(function (a: any, b: any) {
-                                if (Number(a.price) < Number(b.price)) {
-                                    return 1;
-                                }
-                                if (Number(a.price) > Number(b.price)) {
-                                    return -1;
-                                }
-                                return 0;
-                            });
-                            break
-                        case '2':
-                            sort = 2
-                            products.sort(function (a: any, b: any) {
-                                if (Number(a.price) > Number(b.price)) {
-                                    return 1;
-                                }
-                                if (Number(a.price) < Number(b.price)) {
-                                    return -1;
-                                }
-                                return 0;
-                            });
-                            break
-                    }
-                    const html = await templateEngine.render('./Views/products.html', {categories, products, sort})
-                    res.end(html)
-                })
+                this.routeCategory(category)
             })
+        })
+    }
+
+    routeCategory(category: CategoryModelType) {
+        this.get(`/${category.name}`, async (req, res) => {
+            const categories = await DBHelper.getAllCategories()
+            const products = await DBHelper.getProducts(category.name)
+            let sort = 0;
+            switch (req.url_parts.searchParams.get('sort')) {
+                case '1':
+                    sort = 1
+                    products.sort(function (a: any, b: any) {
+                        if (Number(a.price) < Number(b.price)) {
+                            return 1;
+                        }
+                        if (Number(a.price) > Number(b.price)) {
+                            return -1;
+                        }
+                        return 0;
+                    });
+                    break
+                case '2':
+                    sort = 2
+                    products.sort(function (a: any, b: any) {
+                        if (Number(a.price) > Number(b.price)) {
+                            return 1;
+                        }
+                        if (Number(a.price) < Number(b.price)) {
+                            return -1;
+                        }
+                        return 0;
+                    });
+                    break
+            }
+            const html = await templateEngine.render('./Views/products.html', {categories, products, sort})
+            res.end(html)
         })
     }
 
@@ -85,9 +90,7 @@ export default class MExpress {
         try {
             const token = req.cookie.token
             const decoded = jwt.verify(token, config.JWT_secret_key) as dataToken
-            if (req.socket.remoteAddress === decoded.host) {
-                return decoded
-            } else return false
+            return decoded
         } catch (e) {
             return false
         }

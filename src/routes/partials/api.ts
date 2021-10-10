@@ -1,5 +1,4 @@
 import MExpress from "../../modules/MExpress"
-import templateEngine from "../../modules/TemplateEngine"
 import DBHelper from "../../modules/DBHealper"
 
 
@@ -33,13 +32,8 @@ export default (app: MExpress) => {
         const result = MExpress.verifyTokenAdmin(req)
         if (result) {
             const formData = req.formData
-            await DBHelper.createCategory(formData)
-            app.get(`/${formData.name}`, async (req, res) => {
-                const categories = await DBHelper.getAllCategories()
-                const products = await DBHelper.getProducts(formData.name)
-                const html = await templateEngine.render('./Views/products.html', {categories, products})
-                res.end(html)
-            })
+            const category = await DBHelper.createCategory(formData)
+            app.routeCategory(category)
         } else {
             res.statusCode = 401
         }
