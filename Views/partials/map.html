@@ -1,4 +1,58 @@
 <section class="map">
-    <!--  <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ab48736b4fa3318ac8a751b8d8ac46eaa417023c6e9113f51196d884ab2af1b9d&amp;width=100%25&amp;height=400&amp;lang=ru_RU&amp;scroll=false"></script>-->
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3495.751824417202!2d49.67650339283349!3d58.6024782592908!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x43fcf4344f74a8f1%3A0xa1817a2b68121d41!2sBigRolls!5e0!3m2!1sru!2sru!4v1633097435071!5m2!1sru!2sru" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    <style>
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+    <script>
+        coordsStore = {
+            lat: 25.199069611042663,
+            lng: 55.278930602816715
+        }
+        coordsStoreStr = coordsStore.lat + ',' + coordsStore.lng;
+
+        function initMap() {
+            const directionsService = new google.maps.DirectionsService();
+            const directionsRenderer = new google.maps.DirectionsRenderer();
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 12,
+                center: coordsStore,
+            });
+
+            directionsRenderer.setMap(map);
+
+            const marker = new google.maps.Marker({
+                position: coordsStore,
+                map: map,
+                title: 'BigRolls',
+                icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+            });
+
+            navigator.geolocation.getCurrentPosition((position) => {
+                directionsService
+                    .route({
+                        origin: {
+                            query: position.coords.latitude + ', ' + position.coords.longitude,
+                        },
+                        destination: {
+                            query: coordsStoreStr,
+                        },
+                        travelMode: google.maps.TravelMode.DRIVING,
+                    })
+                    .then((response) => {
+                        directionsRenderer.setDirections(response);
+                        marker.setMap(null)
+                    })
+                    .catch((e) => window.alert("Directions request failed due to " + status));
+            })
+        }
+    </script>
+
+    <div id="map"></div>
+
+    <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhXU1esUwg7k8lOec3P_QUZmXjpQrPfTY&callback=initMap&v=weekly"
+            async
+    ></script>
 </section>
