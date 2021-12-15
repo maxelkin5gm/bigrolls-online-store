@@ -1,10 +1,52 @@
 import MExpress from "../../modules/MExpress"
 import DBHelper from "../../modules/DBHealper"
+import categorySchema from "../../modules/Validate/categorySchema";
+import productSchema from "../../modules/Validate/productSchema";
+import orderSchema from "../../modules/Validate/orderSchema";
 
 
 export default (app: MExpress) => {
     app.post('/api/create_order', async (req, res) => {
-        const order = await DBHelper.createOrder(req.json)
+        // validate data request
+        const {error, value} = orderSchema.validate(req.json)
+        if (error) {
+            console.log(error)
+            res.statusCode = 400
+            res.end()
+            return
+        }
+        const orderData = value
+
+        // create object products from DB
+        const products = await DBHelper.getAllProducts()
+        let productsObject: any = {}
+        products.forEach((item) => {
+            productsObject[item.id] = item
+        })
+
+        // validate totalPrice and basket info
+        orderData.info.totalPrice = 0
+        let flagError = false
+        for (let idProduct in orderData.basket) {
+            if (productsObject[idProduct]) {
+                orderData.info.totalPrice += Number(productsObject[idProduct].price) * orderData.basket[idProduct].amount
+                orderData.basket[idProduct].name = productsObject[idProduct].name
+                orderData.basket[idProduct].price = productsObject[idProduct].price
+            } else {
+                flagError = true
+                break
+            }
+        }
+        if (flagError) {
+            res.statusCode = 400
+            res.end()
+            return
+        }
+
+        // write order in DB
+        const order = await DBHelper.createOrder(orderData)
+
+        // try to write order for user
         try {
             const result = MExpress.verifyToken(req)
             if (result) {
@@ -31,9 +73,15 @@ export default (app: MExpress) => {
     app.post('/api/create_category', async (req, res) => {
         const result = MExpress.verifyTokenAdmin(req)
         if (result) {
+            const {error} = categorySchema.validate(req.formData)
+            if (error) {
+                res.statusCode = 400
+                res.end()
+                return
+            }
             const formData = req.formData
             const category = await DBHelper.createCategory(formData)
-            app.routeCategory(category)
+            app.addRouteCategory(category)
         } else {
             res.statusCode = 401
         }
@@ -51,6 +99,12 @@ export default (app: MExpress) => {
     app.post('/api/create_product', async (req, res) => {
         const result = MExpress.verifyTokenAdmin(req)
         if (result) {
+            const {error} = productSchema.validate(req.formData)
+            if (error) {
+                res.statusCode = 400
+                res.end()
+                return
+            }
             await DBHelper.createProduct(req.formData)
         } else {
             res.statusCode = 401

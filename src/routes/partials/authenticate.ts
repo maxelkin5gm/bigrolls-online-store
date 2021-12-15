@@ -5,6 +5,7 @@ import templateEngine from "../../modules/TemplateEngine"
 import DBHelper from "../../modules/DBHealper"
 import CookieHelper from "../../modules/CookieHelper"
 import config from "../../config"
+import loginSchema from "../../modules/Validate/loginSchema";
 
 
 export default (app: MExpress) => {
@@ -27,6 +28,15 @@ export default (app: MExpress) => {
         }
     })
     app.post('/login', async (req, res) => {
+        const {error, value} = loginSchema.validate(req.json)
+        if (error) {
+            console.log(error)
+            res.statusCode = 401
+            res.end()
+            return
+        }
+        req.json = value
+
         const user = await DBHelper.getUserByEmail(req.json.email)
         if (user) {
             if (user.password === req.json.password) {
@@ -39,14 +49,11 @@ export default (app: MExpress) => {
                 CookieHelper.setCookie('token', token)
                 CookieHelper.sendCookie(res)
                 res.end()
-            } else {
-                res.statusCode = 401
-                res.end()
+                return
             }
-        } else {
-            res.statusCode = 401
-            res.end()
         }
+        res.statusCode = 401
+        res.end()
     })
     app.post('/logout', async (req, res) => {
         CookieHelper.deleteCookie('token')
@@ -72,7 +79,16 @@ export default (app: MExpress) => {
         }
     })
     app.post('/registration', async (req, res) => {
+        const {error, value} = loginSchema.validate(req.json)
+        if (error) {
+            console.log(error)
+            res.statusCode = 401
+            res.end()
+            return
+        }
+        req.json = value
         req.json.role = 'client'
+
         await DBHelper.createUser(req.json)
         res.end()
     })

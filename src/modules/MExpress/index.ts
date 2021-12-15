@@ -45,12 +45,12 @@ export default class MExpress {
     bindRoutersCategories() {
         DBHelper.getAllCategories().then((categories) => {
             categories.forEach((category) => {
-                this.routeCategory(category)
+                this.addRouteCategory(category)
             })
         })
     }
 
-    routeCategory(category: CategoryModelType) {
+    addRouteCategory(category: CategoryModelType) {
         this.get(`/${category.name}`, async (req, res) => {
             const categories = await DBHelper.getAllCategories()
             const products = await DBHelper.getProducts(category.name)
