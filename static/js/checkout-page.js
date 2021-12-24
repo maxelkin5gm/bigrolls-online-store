@@ -35,7 +35,7 @@ form.addEventListener('submit', (e) => {
     }).then((res) => {
         if (res.status === 200) {
             localStorage.removeItem('basket')
-            location.href = '/completed'
+            document.querySelector('.checkout-page').innerHTML = '<h1>Спасибо за заказ</h1>'
         } else {
              error.style.display = 'block'
             setTimeout(() => {

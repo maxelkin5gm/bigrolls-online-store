@@ -23,7 +23,7 @@ export default (app: MExpress) => {
                     res.redirect(302, '/')
             }
         } else {
-            const html = await templateEngine.render('./Views/login.html', {})
+            const html = await templateEngine.renderFile('./Views/login.html', {})
             res.end(html)
         }
     })
@@ -74,7 +74,7 @@ export default (app: MExpress) => {
                     res.redirect(302, '/')
             }
         } else {
-            const html = await templateEngine.render('./Views/registration.html', {})
+            const html = await templateEngine.renderFile('./Views/registration.html', {})
             res.end(html)
         }
     })

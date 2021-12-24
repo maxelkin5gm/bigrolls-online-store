@@ -1,5 +1,41 @@
 const form = document.forms[0]
 
+
+function updateBtnListener() {
+    const deleteBtns = document.querySelectorAll('.product__deleteBtn')
+    deleteBtns.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault()
+
+            fetch('/api/delete_product', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    idProduct: btn.dataset.id,
+                    imgURL: btn.dataset.imgurl
+                })
+            }).then((res) => {
+                fetch('/api/get_products', {
+                    method: 'POST'
+                }).then((res) => {
+                    document.querySelector('.products__container').innerHTML = '<h2>Продукты:</h2>'
+                    return res.text()
+                }).then((dataHTML) => {
+                    document.querySelector('.products__container').innerHTML += dataHTML
+                    updateBtnListener()
+                });
+            });
+        })
+    })
+}
+
+
+// delete
+updateBtnListener()
+
+
 // create
 form.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -8,28 +44,14 @@ form.addEventListener('submit', (e) => {
         method: 'POST',
         body: new FormData(form)
     }).then((res) => {
-        location.reload()
-    })
-})
-
-// delete
-const deleteBtns = document.querySelectorAll('.product__deleteBtn')
-
-deleteBtns.forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-        e.preventDefault()
-
-        fetch('/api/delete_product', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                idProduct: btn.dataset.id,
-                imgURL: btn.dataset.imgurl
-            })
+        fetch('/api/get_products', {
+            method: 'POST'
         }).then((res) => {
-            location.reload()
-        })
+            document.querySelector('.products__container').innerHTML = '<h2>Продукты:</h2>'
+            return res.text()
+        }).then((dataHTML) => {
+            document.querySelector('.products__container').innerHTML += dataHTML
+            updateBtnListener()
+        });
     })
 })

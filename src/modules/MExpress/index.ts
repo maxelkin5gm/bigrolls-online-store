@@ -81,7 +81,7 @@ export default class MExpress {
                     });
                     break
             }
-            const html = await templateEngine.render('./Views/products.html', {categories, products, sort})
+            const html = await templateEngine.renderFile('./Views/products.html', {categories, products, sort})
             res.end(html)
         })
     }

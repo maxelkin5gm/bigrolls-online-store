@@ -8,7 +8,7 @@ export default (app: MExpress) => {
         const result = MExpress.verifyTokenAdmin(req)
         if (result) {
             const orders = await DBHelper.getOrders()
-            const html = await templateEngine.render('./Views/admin/admin-orders.html', {orders})
+            const html = await templateEngine.renderFile('./Views/admin/admin-orders.html', {orders})
             res.end(html)
         } else res.redirect(302, '/login')
     })
@@ -17,7 +17,7 @@ export default (app: MExpress) => {
         if (result) {
             const categories = await DBHelper.getAllCategories()
             const products = await DBHelper.getAllProducts()
-            const html = await templateEngine.render('./Views/admin/admin-products.html', {categories, products})
+            const html = await templateEngine.renderFile('./Views/admin/admin-products.html', {categories, products})
             res.end(html)
         } else res.redirect(302, '/login')
     })
@@ -25,7 +25,7 @@ export default (app: MExpress) => {
         const result = MExpress.verifyTokenAdmin(req)
         if (result) {
             const categories = await DBHelper.getAllCategories()
-            const html = await templateEngine.render('./Views/admin/admin-categories.html', {categories})
+            const html = await templateEngine.renderFile('./Views/admin/admin-categories.html', {categories})
             res.end(html)
         } else res.redirect(302, '/login')
     })

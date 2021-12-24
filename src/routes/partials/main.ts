@@ -7,27 +7,27 @@ import CookieHelper from "../../modules/CookieHelper";
 export default (app: MExpress) => {
     app.get('/', async (req, res) => {
         const categories = await DBHelper.getAllCategories()
-        const html = await templateEngine.render('./Views/categories.html', {categories: categories})
+        const html = await templateEngine.renderFile('./Views/categories.html', {categories: categories})
         res.end(html)
     })
     app.get('/about', async (req, res) => {
         const categories = await DBHelper.getAllCategories()
-        const html = await templateEngine.render('./Views/about.html', {categories})
+        const html = await templateEngine.renderFile('./Views/about.html', {categories})
         res.end(html)
     })
     app.get('/basket', async (req, res) => {
         const categories = await DBHelper.getAllCategories()
-        const html = await templateEngine.render('./Views/basket.html', {categories})
+        const html = await templateEngine.renderFile('./Views/basket.html', {categories})
         res.end(html)
     })
     app.get('/checkout', async (req, res) => {
         const categories = await DBHelper.getAllCategories()
-        const html = await templateEngine.render('./Views/checkout.html', {categories})
+        const html = await templateEngine.renderFile('./Views/checkout.html', {categories})
         res.end(html)
     })
     app.get('/completed', async (req, res) => {
         const categories = await DBHelper.getAllCategories()
-        const html = await templateEngine.render('./Views/completed.html', {categories})
+        const html = await templateEngine.renderFile('./Views/completed.html', {categories})
         res.end(html)
     })
     app.get('/profile', async (req, res) => {
@@ -37,7 +37,7 @@ export default (app: MExpress) => {
             if (user) {
                 const orders = await DBHelper.getOrdersByUser(user)
                 const categories = await DBHelper.getAllCategories()
-                const html = await templateEngine.render('./Views/profile.html', {categories, user, orders})
+                const html = await templateEngine.renderFile('./Views/profile.html', {categories, user, orders})
                 res.end(html)
                 return
             }
