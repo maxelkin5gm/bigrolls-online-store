@@ -19,8 +19,8 @@ const orderSchema = Joi.object({
         name: Joi.string().min(0),
         price: Joi.string().min(0),
         imgURL: Joi.string().min(0),
-        amount: Joi.number().min(1).integer().required(),
-    }))
+        amount: Joi.number().min(1).max(50).integer().required(),
+    }).required().min(1))
 })
 
 
