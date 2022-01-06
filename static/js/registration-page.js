@@ -1,25 +1,25 @@
-const form = document.forms[0]
+const form = document.forms[0];
 
 form.addEventListener('submit', async (e) => {
-    e.preventDefault()
+  e.preventDefault();
 
-    const res = await fetch('/registration', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            email: form.email.value,
-            password: form.password.value
-        })
-    })
+  const res = await fetch('/registration', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email: form.email.value,
+      password: form.password.value,
+    }),
+  });
 
-    if (res.status === 200) {
-        location.href = '/profile'
-    } else {
-        error.style.display = 'block'
-        setTimeout(() => {
-            error.style.display = 'none'
-        }, 3000)
-    }
-})
+  if (res.status === 200) {
+    location.href = '/profile';
+  } else {
+    error.style.display = 'block';
+    setTimeout(() => {
+      error.style.display = 'none';
+    }, 3000);
+  }
+});

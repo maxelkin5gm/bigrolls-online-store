@@ -1,11 +1,11 @@
-const logoutBtn = document.querySelector('.profile-page__logoutBtn')
+const logoutBtn = document.querySelector('.profile-page__logoutBtn');
 
 logoutBtn.addEventListener('click', (e) => {
-    e.preventDefault()
+  e.preventDefault();
 
-    fetch('/logout', {
-        method: 'POST',
-    }).then((res) => {
-        location.reload()
-    })
-})
+  fetch('/logout', {
+    method: 'POST',
+  }).then((res) => {
+    location.reload();
+  });
+});

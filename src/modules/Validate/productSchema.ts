@@ -1,24 +1,24 @@
-import Joi from "joi";
+import Joi from 'joi';
 
 const productSchema = Joi.object({
-    name: Joi.string()
-        .min(3)
-        .max(15)
-        .trim()
-        .required(),
+  name: Joi.string()
+    .min(3)
+    .max(15)
+    .trim()
+    .required(),
 
-    price: Joi.number()
-        .integer()
-        .min(0)
-        .required(),
+  price: Joi.number()
+    .integer()
+    .min(0)
+    .required(),
 
-    category: Joi.string()
-        .min(3)
-        .max(15)
-        .trim()
-        .required(),
+  category: Joi.string()
+    .min(3)
+    .max(15)
+    .trim()
+    .required(),
 
-    imgURL: Joi.string().trim()
-})
+  imgURL: Joi.string().trim(),
+});
 
-export default productSchema
+export default productSchema;

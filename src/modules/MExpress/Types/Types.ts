@@ -1,25 +1,24 @@
-import {IncomingMessage, ServerResponse} from "http";
-
+import { IncomingMessage, ServerResponse } from 'http';
 
 export interface Request extends IncomingMessage {
-    cookie: { [key: string]: string }
-    url_parts: URL
-    json?: any,
-    formData?: any
+  cookie: { [key: string]: string }
+  url_parts: URL
+  json?: any,
+  formData?: any
 }
 
 export interface Response extends ServerResponse {
-    redirect(statusCode: number, url: string): void
+  redirect(statusCode: number, url: string): void
 }
 
-export type routerCB = (req: Request, res: Response) => void
+export type RouterCB = (req: Request, res: Response) => void;
 
-export type middleware = (req: Request, res: Response, next: () => void) => void
+export type Middleware = (req: Request, res: Response, next: () => void) => void;
 
-export type nextFunction = () => void
+export type NextFunction = () => void;
 
-export type routers = {
-    [key: string]: { [key: string]: routerCB }
-}
+export type Routers = {
+  [key: string]: { [key: string]: RouterCB }
+};
 
-export type dataToken = {[key: string]: any}
+export type DataToken = { [key: string]: any };

@@ -1,13 +1,13 @@
-import Joi from "joi";
+import Joi from 'joi';
 
 const categorySchema = Joi.object({
-    name: Joi.string()
-        .min(3)
-        .max(15)
-        .trim()
-        .required(),
+  name: Joi.string()
+    .min(3)
+    .max(15)
+    .trim()
+    .required(),
 
-    imgURL: Joi.string().trim()
-})
+  imgURL: Joi.string().trim(),
+});
 
-export default categorySchema
+export default categorySchema;
