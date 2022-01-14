@@ -114,6 +114,7 @@ export default class BasketModule {
                     }).then((res) => {
                         this.renderBasket()
                         this.updateIndicator()
+                        location.reload()
                     })
                 } else {
                     localStorage.setItem('basket', JSON.stringify(this.basket));
