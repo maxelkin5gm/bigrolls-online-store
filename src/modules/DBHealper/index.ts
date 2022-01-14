@@ -9,9 +9,21 @@ import ProductsModel, { ProductModelType } from './Models/ProductsModel';
 import CategoriesModel, { CategoryModelType } from './Models/CategoriesModel';
 import OrdersModel, { OrderModelType } from './Models/OrdersModel';
 import UsersModel, { UserModelType } from './Models/UsersModel';
+import BasketModel from './Models/BasketModel';
 
 export default class DBHelper {
   // get
+
+  static async getBasket() {
+    return await BasketModel.findOne() as any;
+  }
+
+  static async updateBasket(json: any) {
+    const basket = await BasketModel.findOne();
+    basket.basket = json;
+    basket.save();
+  }
+
   static async getAllCategories() {
     return await CategoriesModel.find() as CategoryModelType[];
   }

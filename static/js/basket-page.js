@@ -6,4 +6,4 @@ if (BasketModule.isEmpty()) {
 }
 
 BasketModule.renderBasket();
-BasketModule.bindDeleteBtn('.basket-page__delete');
+BasketModule.renderOrderPrice('.basket-page__orderPrice');
